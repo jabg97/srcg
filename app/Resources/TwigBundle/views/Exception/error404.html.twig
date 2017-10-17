@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Error 404
+{% endblock %}
+
+{% block body %}
+<div class="error-header" ></div>
+    <div class="container free-bird">
+        <div class="row">
+
+<div class="card col-md-10 col-lg-10 col-sm-10 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+      
+ <div class="form-header red darken-3 z-depth-5 hoverable">
+            <h1 class="nb-error-title"><i class="fa fa-exclamation-triangle left"></i><strong> Error 404</strong></h1>
+        </div>
+
+
+  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+
+     <center> <h4 class="nb-error-sub">No podemos encontrar la pagina...</h4></center>
+     
+ <div class="view card-photo error-img">
+<div class="subimg">
+<img src="{{ asset('img/exception/404.png') }}" class="img-fluid lost-error-img" alt="404"/>
+                    </div>
+                    </div>
+                    <br>
+      <div class="error-desc">
+
+         <ul class="list-inline text-center text-sm">
+         <li class="list-inline-item">
+           Lo sentimos, pero la pagina que usted esta buscando no pudo ser encontrada o no existe.
+           </li>
+           <li class="list-inline-item">
+           prueba actualizando la pagina o dando click en el link para volver a la pagina principal.
+           </li>
+           
+           <br>
+           <li class="list-inline-item link-error-page"><a href="{{ path('homepage') }}" class="text-muted"><i class="fa fa-home left"></i> Pagina principal</a>
+           </li>
+            <li class="list-inline-item link-error-page"><a href="{{ app.request.server.get('HTTP_REFERER') }}" class="text-muted"><i class="fa fa-sign-in left"></i> Volver</a>
+           </li>
+        </ul>
+        </div>
+     
+      </div>
+
+    </div>
+
+
+    </div>
+</div>
+ </div>
+
+
+{% endblock %}

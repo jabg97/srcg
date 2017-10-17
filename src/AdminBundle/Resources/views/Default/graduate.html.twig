@@ -1,0 +1,398 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Gestión de Graduandos
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/user/style.css') }}"/>
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/admin/file.css') }}"/>
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/admin/chosen/chosen.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+ <nav class="navbar hoverable navbar-toggleable-md navbar-light fixed-top scrolling-navbar">
+        <div class="container">          
+            <span class="navbar-brand">
+                <img src="{{ asset('img/general/logo.png') }}" class="img-fluid logouni" alt="logo"/>
+            </span>
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item waves-effect">
+                    <a class="nav-link" href="{{ path('admin') }}"><i class="fa fa-home left"></i>&nbsp;Página Principal</a>
+                </li>
+               
+<li class="nav-item dropdown  btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-bank"></i>&nbsp;Información Académica</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable now"><i class="fa fa-graduation-cap left"></i>&nbsp;Graduandos</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminCareer') }}"><i class="fa fa-book left"></i>&nbsp;Programas Académicos</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminFaculty') }}"><i class="fa fa-bank left"></i>&nbsp;Facultades</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-ticket"></i>&nbsp;Información del Evento</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminLocation') }}"><i class="fa fa-map-signs left"></i>&nbsp;Ubicaciones</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminEvent') }}"><i class="fa fa-cogs left"></i>&nbsp;Configuración</a>
+                    </div>
+                </li>
+
+                
+            </ul>
+         
+            <ul class="navbar-nav nav-flex-left">
+              <li class="nav-item dropdown nombre btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-user-secret"></i>&nbsp;Administrador</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminPass') }}"><i class="fa fa-unlock-alt left"></i>&nbsp;Modificar Contrase&ntilde;a</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('logout') }}"><i class="fa fa-sign-out left"></i>&nbsp;Cerrar Sesion</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+
+<div class="graduate-header" ></div>
+    <div class="container free-bird">
+        <div class="row">
+
+<div class="card col-md-12 col-lg-12 col-sm-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+      
+ <div class="form-header red darken-3 z-depth-5 hoverable">
+            <h3><i class="fa fa-graduation-cap"></i><strong> Gestión de Graduandos</strong></h3>
+        </div>
+<center>
+
+  <div class="col-md-11 col-lg-11 col-sm-11 col-xs-11">
+
+<div class="table-responsive table-hover table-striped">
+<table class="table" id="graduate-table">
+    <thead class="dark-header">
+        <tr>
+             <th>{{ knp_pagination_sortable(pagination, 'Codigo', 'graduate.codigo') }}</th>
+            <th{% if pagination.isSorted('graduate.nombre') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Nombre', 'graduate.nombre') }}
+            </th>
+            <th {% if pagination.isSorted('graduate.apellido') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Apellido', 'graduate.apellido') }}
+            </th>
+            <th {% if pagination.isSorted('user.email') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Email', 'user.email') }}
+            </th>
+             <th {% if pagination.isSorted('career.codigo') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Programa', 'career.codigo') }}
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody> 
+    {% for graduate in pagination %}
+        <tr>
+            <td scope="row"><strong>{{ graduate.codigo }}</strong></td>
+            <td>{{ graduate.nombre }}</td>
+            <td>{{ graduate.apellido }}</td>
+            <td>{{ graduate.email }}</td>
+            <td>{{ graduate.codigo_programa }}) {{graduate.nombre_programa}}</td>
+        </tr>
+
+{% endfor %}
+
+    </tbody>
+</table>
+</div>
+<br/>
+ <div class="row">
+ <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+<div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+     </div>
+     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+     <h4> <span class="badge special-color-dark" style="float:right;">
+            Cantidad de Graduandos: {{ pagination.getTotalItemCount }}
+        </span> </h4>
+        </div>
+        </div>
+
+<br/><br/>
+
+  <div class="row">
+
+<div class="col-md-6 col-lg-6">
+<div class="card z-depth-4 hoverable">
+    <div class="card-header dark-header white-text z-depth-4 hoverable">
+    <i class="fa fa-file-text left lead"></i><strong> Importar Graduandos</strong>
+    </div>
+    <div class="card-block">
+        <h5 class="card-title">Importar una lista de graduandos.</h5>
+        <form id="formCSV" method="POST" action="{{ path('graduateCSV') }}" enctype="multipart/form-data">
+    <div id="csv_div"  class="fileUpload">
+					<input type="file" name="csv" required accept=".csv,.CSB" id="csv" class="inputfile inputfile-5 upload" required/>
+					<label for="csv" class="waves-effect hoverable"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 25 10"><path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/></svg></figure> <span id="etiqueta">Seleccione un archivo CSV</span></label>
+				</div>
+</form>
+    </div>
+</div>
+</div>
+
+
+  <div class="col-md-6 col-lg-6">
+<div class="card z-depth-4 hoverable">
+    <div class="card-header dark-header white-text z-depth-4 hoverable">
+       <i class="fa fa-plus left lead"></i><strong> Registrar Graduando</strong>
+    </div>
+    <div class="card-block">
+        <h5 class="card-title">Ingresar los datos para registrar un nuevo graduando.</h5>
+
+  <div class="div_insert">
+        <button class="btn btn-lg  btn-unique waves-light hoverable" data-toggle="modal" data-target="#mensaje_registrar"><i class='fa fa-plus left'></i> Registrar</button>  
+</div>
+<br><br>
+    </div>
+</div>
+</div></div>
+<br><br>
+<div class="row">
+
+<div class="col-md-12 col-lg-12">
+<div class="card z-depth-4 hoverable">
+    <div class="card-header red darken-3 white-text z-depth-4 hoverable">
+    <i class="fa fa-times left lead"></i><strong> Eliminar Graduandos</strong>
+    </div>
+    <div class="card-block">
+        <h5 class="card-title">Eliminar todos los graduandos.</h5>
+       <form method="POST" id="formRemoveAll" action="{{ path('removeAllGraduates') }}"></form>
+            <button class="btn btn-lg  btn-danger waves-effect hoverable" data-toggle="modal" data-target="#mensaje_removeAll"><i class='fa fa-times left'></i>Borrar Todo</button>  
+    </div>
+</div>
+</div>
+</div>
+<br><br>
+<div class="row">
+<div class="col-md-12 col-lg-12">
+
+{% if message == "empty" %}
+<div class='error alert bg-danger waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> Por favor ingrese un archivo CSV.</center></div>
+{% endif %}
+
+{% if message == "format" %}
+<div class='error alert bg-danger waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> El archivo CSV tiene un formato equivocado.</center></div>
+{% endif %}
+
+{% if message == "career" %}
+<div class='error alert bg-warning waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-triangle left'></i>&nbsp;&nbsp;Error!</strong> El programa academico no existe.</center></div>
+{% endif %}
+
+{% if message == "email" %}
+<div class='error alert bg-warning waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-triangle left'></i>&nbsp;&nbsp;Error!</strong> El email ya esta en uso.</center></div>
+{% endif %}
+
+{% if message == "success" %}
+<div class='error alert bg-success waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-check left'></i>&nbsp;&nbsp;Exito!</strong> Los cambios fueron efectuados.</center></div>
+{% endif %}
+
+{% if errors %}
+<div class='error alert alert-info waves-effect text-muted z-depth-5 hoverable'>
+ <span  class="close" data-dismiss="alert" aria-label="close">&times;</span>
+ <div  id='todo'>
+       <center>
+       {% if message == "error" %}
+{% for error in errors %}
+{% for exception in error %}
+   <span class="imen"> <strong><i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> {{exception.message}}</span><br>
+{% endfor %}
+{% endfor %}
+{% elseif message == "data"%}
+{% for graduates in errors %}
+{% for error in graduates %}
+{% for exception in error %}
+   <span class="imen"> <strong><i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> {{exception.message}}</span><br>
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+</center></div></div>
+{% endif %}
+</div></div>
+
+</div>
+ 
+    </div>
+    </div>
+</div>
+ </div>
+</div>
+
+ <input type="hidden" id="programasjson" readonly value='[{% for header in careers %}{% for career in header[1] %}{"id":"{{career.codigo}}","data":"{{career.codigo}}) {{career.nombre}}"},{% endfor %}{% endfor %}'/>
+ {% include 'AdminBundle:Include:alertGraduate.html.twig'  %}
+ {% endblock %}   
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/admin/jquery.tabledit.js') }}" charset="utf-8"></script>
+<script type="text/javascript" src="{{ asset('js/admin/graduate/csv.js') }}" charset="utf-8"></script>
+<script type="text/javascript" src="{{ asset('js/admin/graduate/form.js') }}" charset="utf-8"></script>
+<script type="text/javascript" src="{{ asset('js/admin/chosen/chosen.jquery.js') }}" charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+var  message="{{ message }}";
+
+if(message == "empty"){
+$("#mensaje_empty").modal('show');
+     }
+
+     if(message == "format"){
+$("#mensaje_format").modal('show');
+     }
+
+if(message == "career"){
+$("#mensaje_career").modal('show');
+     }
+
+     if(message == "email"){
+$("#mensaje_email").modal('show');
+     }
+
+if(message == "success"){
+$("#mensaje_success").modal('show');
+     }
+
+if(message == "error" || message == "data"){
+$('#mensajes').focus().html("<font class='text-muted'>"+ $('#todo').html()+"</font><br>"); 
+$("#mensaje_validation").modal('show');
+     }
+
+
+  $("#programa").chosen({
+    no_results_text: "No se  pudo encontrar!",
+    width: "87%"
+  });
+
+var json = $("#programasjson").val();
+json = json.substring(0,json.length-1);
+
+$('#graduate-table').Tabledit({
+
+columns: {
+  identifier: [0, 'codigo'],                    
+  editable: [[1, 'nombre'], [2, 'apellido'],[3, 'email'],  [4, 'programa',json+']']]
+},
+
+// link to server script
+// e.g. 'ajax.php'
+url: "{{ path('updateGraduate') }}",
+
+// class for form inputs
+inputClass: 'form-control validate inputp',
+
+// // class for toolbar
+toolbarClass: 'btn-toolbar',
+
+// class for buttons group
+groupClass: 'btn-group',
+
+// class for row when ajax request fails
+dangerClass: 'danger',
+
+// class for row when save changes
+warningClass: 'warning',
+
+// class for row when is removed
+mutedClass: 'text-muted',
+
+// trigger to change for edit mode.
+// e.g. 'dblclick'
+eventType: 'click',
+
+// change the name of attribute in td element for the row identifier
+rowIdentifier: 'codigo',
+
+// activate focus on first input of a row when click in save button
+autoFocus: true,
+
+// hide the column that has the identifier
+hideIdentifier: false,
+
+// activate edit button instead of spreadsheet style
+editButton: true,
+
+// activate delete button
+deleteButton: true,
+
+// activate save button when click on edit button
+saveButton: true,
+
+// activate restore button to undo delete action
+restoreButton: false,
+
+// custom action buttons
+buttons: {
+  edit: {
+    class: 'btn btn-unique btn-sm botonp waves-light waves-effect hoverable',
+    html: '<i class="fa fa-pencil left"></i>Editar',
+    action: 'edit'
+  },
+  delete: {
+    class: 'btn btn-danger btn-sm botonp waves-effect hoverable',
+    html: '<i class="fa fa-remove left"></i>Borrar',
+    action: 'delete'
+  },
+  save: {
+    class: 'btn btn-teal btn-sm botonp waves-effect hoverable',
+    html: '<i class="fa fa-send left"></i>Enviar'
+  },
+
+  confirm: {
+    class: 'btn btn-amber btn-sm botonp waves-effect hoverable',
+    html: '<i class="fa fa-exclamation-triangle left"></i>Continuar'
+  }
+},
+
+// executed after draw the structure
+onDraw: function() { return; },
+
+// executed when the ajax request is completed
+// onSuccess(data, textStatus, jqXHR)
+onSuccess: function(data, textStatus, jqXHR) { 
+    if(data[0]== 'fail'){
+$('#muf').focus().html(data[1]); 
+$("#mensaje_updatefail").modal('show');
+    }else if(data[0]== 'success'){
+$('#mus').focus().html(data[1]); 
+$("#mensaje_updatesuccess").modal('show');
+    }else{
+    $('#mus').focus().html(textStatus); 
+$("#mensaje_updatesuccess").modal('show');
+    }
+    return; 
+    },
+
+// executed when occurred an error on ajax request
+// onFail(jqXHR, textStatus, errorThrown)
+onFail: function(jqXHR, textStatus, errorThrown) {
+     $('#msf').focus().html("Error! "+errorThrown); 
+$("#mensaje_sendfail").modal('show');
+     return; 
+     },
+
+// executed whenever there is an ajax request
+onAlways: function() { return; },
+
+// executed before the ajax request
+// onAjax(action, serialize)
+onAjax: function() { return; }
+
+});
+
+
+</script>
+{% endblock %}
+  

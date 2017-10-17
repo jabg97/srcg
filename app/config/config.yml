@@ -1,0 +1,117 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: "@GraduateBundle/Resources/config/services.yml" }
+    - { resource: "@AdminBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: es
+
+services:
+    srcg.get_event_info:
+        class: AppBundle\Service\EventInfo
+        arguments: ['@doctrine.orm.entity_manager']
+        
+
+framework:
+    #esi: ~
+    #translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: utf8mb4
+        default_table_options:
+            charset: utf8mb4
+            collate: utf8mb4_unicode_ci
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.project_dir%/var/data/data.sqlite"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        dql:
+            datetime_functions:
+                #path to date functions as same as numeric function
+            numeric_functions:
+                #path to date functions as same as numeric function
+            string_functions:
+                #path to string functions as same as numeric function
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
+
+knp_paginator:
+    page_range: 5                   
+    default_options:                               
+        page_name: page               
+        sort_field_name: sort          
+        sort_direction_name: direction
+        distinct: true               
+        filter_field_name: filterField
+        filter_value_name: filterValue
+    template:                                        
+        pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig'     # sliding pagination controls template                                    
+        sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template                                
+        filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+
+endroid_qr_code:
+    writer: 'png'
+    size: 260
+    margin: 0
+    foreground_color: { r: 209, g: 27, b: 35 }
+    background_color: { r: 255, g: 255, b: 255 }
+    error_correction_level: quartile # low, medium, quartile or high
+    encoding: UTF-8
+    label: 
+    label_font_size: 20
+    label_alignment: left # left, center or right
+    label_margin: { b: 20 }
+    logo_path: '%kernel.root_dir%/../web/img/general/qr_logo.png'
+    logo_width: 80
+    validate_result: true # checks if the result is readable

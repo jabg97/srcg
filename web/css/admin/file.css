@@ -1,0 +1,153 @@
+.js .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.no-js .inputfile+label {
+    display: none;
+}
+
+.inputfile+label * {
+    /* pointer-events: none; */
+    /* in case of FastClick lib use */
+}
+
+.inputfile+label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+.fileUpload {}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+
+/* style 5 */
+
+.inputfile-5+label {
+    color: #2e5a75;
+    transition: 0.4s;
+}
+
+.inputfile-5:focus+label,
+.inputfile-5.has-focus+label,
+.inputfile-5+label:hover {
+    color: #20455e;
+}
+
+.inputfile-5+label figure {
+    width: 50px;
+    height: 65px;
+    background: #20455e !important;
+    background: -moz-linear-gradient(top, #20455e 0%, #20455e 54%, #3b749b 100%) !important;
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, #20455e), color-stop(54%, #20455e), color-stop(100%, #3b749b)) !important;
+    background: -webkit-linear-gradient(top, #20455e 0%, #20455e 54%, #3b749b 100%) !important;
+    background: -o-linear-gradient(top, #20455e 0%, #20455e 54%, #3b749b 100%) !important;
+    background: -ms-linear-gradient(top, #20455e 0%, #20455e 54%, #3b749b 100%);
+    background: linear-gradient(to bottom, #20455e 0%, #20455e 54%, #3b749b 100%) !important;
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#20455e', endColorstr='#3b749b', GradientType=0);
+    display: block;
+    position: relative;
+    padding: 10px;
+    margin: 0 auto 10px;
+    transition: 0.4s;
+}
+
+.inputfile-5:focus+label figure,
+.inputfile-5.has-focus+label figure,
+.inputfile-5+label:hover figure {
+    transition: 0.4s;
+    background: #142b3b !important;
+    background: -moz-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, #142b3b), color-stop(54%, #142b3b), color-stop(100%, #20455e)) !important;
+    background: -webkit-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
+    background: -o-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
+    background: -ms-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%);
+    background: linear-gradient(to bottom, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#142b3b', endColorstr='#20455e', GradientType=0);
+}
+
+.inputfile-5+label figure::before,
+.inputfile-5+label figure::after {
+    width: 0;
+    height: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: 0.4s;
+}
+
+.inputfile-5+label figure::before {
+    border-top: 20px solid #ffffff;
+    border-left: 20px solid transparent;
+}
+
+.inputfile-5+label figure::after {
+    border-bottom: 20px solid #0e1e29;
+    border-right: 20px solid transparent;
+}
+
+.inputfile-5:focus+label figure::after,
+.inputfile-5.has-focus+label figure::after,
+.inputfile-5+label:hover figure::after {
+    border-bottom-color: #265270;
+}
+
+.inputfile-5+label svg {
+    width: 100%;
+    height: 100%;
+    fill: #fce9ea;
+    transition: 0.4s;
+}
+
+.inputfile-5+label svg:focus,
+.inputfile-5+label svg:active,
+.inputfile-5+label svg:hover {
+    opacity: 1;
+    -ms-transform: scale(1.2, 1.2);
+    /* IE 9 */
+    -webkit-transform: scale(1.2, 1.2);
+    /* Safari */
+    transform: scale(1.2, 1.2);
+}
+
+.div_insert {
+    max-width: 100%;
+    padding-top: 1.25rem !important;
+    padding-right: 1rem !important;
+}

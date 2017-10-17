@@ -1,0 +1,80 @@
+<html>
+ <head>
+  <title>Lista de Invitados</title>
+    <style>
+
+body {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  color:#000000;
+  margin:0;
+	padding:0;
+}
+
+	.container2 {
+	clear:left;
+	float:left;
+	width:100%;
+	overflow:hidden;
+}
+.container1 {
+	float:left;
+	width:100%;
+	position:relative;
+	right:50%;
+}
+.col1 {
+	float:left;
+	width:46%;
+	position:relative;
+	left:52%;
+	overflow:hidden;
+}
+.col2 {
+	float:left;
+	width:46%;
+	position:relative;
+	left:56%;
+	overflow:hidden;
+}
+
+.checked {
+	text-transform: lowercase;
+	text-decoration: line-through;
+	color:#a8a8a8;
+}
+
+           </style>
+           </head>
+           <body>
+		   {% for key,data in info %}
+		   {% if key % 2 == 0 and key == last %}
+		   <div class="container2">
+	<div class="container1">
+	<div class="col1">		
+	{% include 'AdminBundle:Include:guestInfo.html.twig'  %}
+	</div>
+<div class="col2">
+		</div>
+	</div>
+</div>
+	{% elseif  key % 2 == 0 and key != last %}
+	<div class="container2">
+	<div class="container1">
+	<div class="col1">		
+	{% include 'AdminBundle:Include:guestInfo.html.twig'  %}
+	</div>
+{% else %}
+		<div class="col2">
+			{% include 'AdminBundle:Include:guestInfo.html.twig'  %}
+		</div>
+	</div>
+</div>
+<hr>
+{% endif %}
+
+{% endfor %}
+    </body>
+</html>
+

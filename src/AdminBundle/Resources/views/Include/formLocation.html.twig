@@ -1,0 +1,192 @@
+<div class="modal fade right" id="mensaje_actualizar{{ location.codigo }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+ <div class="modal-dialog modal-notify  modal-full-height modal-right" role="document">
+     
+        <div class="modal-content">
+        
+            <div class="modal-header dark-header">
+                <p class="heading lead">Editar Ubicacion</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body ">
+                <div class="text-center">
+                  <i class="fa fa-pencil fa-5x mb-1 animated rotateIn dark-icon"></i>
+ <h5 class="h5-resposive"> Informacion de la ubicacion</h5>
+                   </div>
+                <hr>
+                <br>
+                
+{% set form = formObject.createView %}
+     {{ form_start(form) }}
+
+<div class="md-form error_div">
+            <i class="prefix fa fa-map-signs"></i>
+        {{ form_widget(form.codigo,
+        { 'attr': {'class': 'form-control validate','value': location.codigo,'pattern': '[0-9]{1,2}','title': 'Ingrese solo numeros','readonly': 'readonly'}}) }}
+        {{ form_label(form.codigo, 'Ingresa el codigo',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+        </div>
+<br>
+
+
+<div class="md-form error2_div">
+            <i class="prefix fa fa-users"></i>
+        {{ form_widget(form.capacidad,
+        { 'attr': {'class': 'form-control validate','value': location.capacidad,'pattern': '[0-9]{1,6}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.capacidad, 'Ingresa la capacidad',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+        </div>
+<br>
+
+<div class="md-form error3_div">
+            <i class="prefix fa fa-map-marker"></i>
+        {{ form_widget(form.zonas,
+        { 'attr': {'class': 'form-control validate','value': location.zonas,'min': '1','max': '3','pattern': '[0-9]{1,1}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.zonas, 'Ingresa las zonas',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+        </div>
+<br>
+
+<div class="md-form error4_div">
+            <i class="prefix fa fa-columns fa-rotate-270"></i>
+        {{ form_widget(form.filas,
+        { 'attr': {'class': 'form-control validate','value': location.filas,'pattern': '[0-9]{1,3}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.filas, 'Ingresa las filas',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+        </div>
+<br>
+<div class="md-form error5_div">
+<i class="prefix fa fa-columns"></i>
+        {{ form_widget(form.columnas,
+        { 'attr': {'class': 'form-control validate','value': location.columnas,'pattern': '[0-9]{1,3}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.columnas, 'Ingresa las columnas',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+         </div>
+<br>
+
+<div class="md-form error6_div">
+          <i class="prefix"></i>
+        {{ form_widget(form.nombre,
+        { 'attr': {'class': 'form-control validate','value': location.nombre,'pattern': "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,50}",'title': 'Ingrese solo letras'}}) }}
+        {{ form_label(form.nombre, 'Ingrese el nombre',
+         {'label_attr': {'data-error': 'Solo letras','data-success': 'Correcto'}
+         }) }}
+    
+        </div>
+<br>
+
+<div class="md-form error7_div">
+          <i class="prefix"></i>
+        {{ form_widget(form.direccion,
+        { 'attr': {'class': 'form-control validate ','value': location.direccion}}) }}
+        {{ form_label(form.direccion, 'Ingrese la direccion',
+         {'label_attr': {'data-error': 'Solo letras','data-success': 'Correcto'}
+         }) }}
+            
+        </div>
+<br>
+
+            <div id="map_div"  class="map_div">
+            {{ form_label(form.map, 'Seleccione un mapa PDF') }}
+        {{ form_widget(form.map,
+        { 'attr': {'class': 'form-control validate','accept': 'application/pdf,application/x-pdf'}}) }}
+        
+					</div>
+                
+<br>
+
+ <div id="image_div"  class="image_div">
+    {{ form_label(form.image, 'Seleccione una imagen JPG o JPEG (600 x 400)px') }}
+        {{ form_widget(form.image,
+        { 'attr': {'class': 'form-control validate','accept': 'image/jpeg,image/pjpeg'}}) }}
+     
+				</div>
+                <input type="hidden" name="action" value="edit" readonly/>
+<br>
+<center><button type="submit" class="btn btn-lg  btn-unique waves-light hoverable" id="btn-validar"><i class='fa fa-pencil left'></i> Editar</button>  </center>		
+{{ form_end(form) }}
+            </div>
+
+        </div>
+    
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_remove{{ location.codigo }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-side modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header info-header ">
+                <p class="heading lead">¿Esta seguro?</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+           <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-question-circle fa-5x mb-1 animated rotateIn info-icon"></i>
+                    <p class="animated  tada lead imen">¿Esta seguro que desea eliminar {{ location.nombre }}?</p>
+<form method="POST" action="{{ path('removeLocation') }}">
+            <input type="hidden" name="codigo" value="{{ location.codigo }}" readonly/>
+       	
+<div class="form-inline">
+<div class="md-form form-group">
+        <div class="text-xs-center">
+            <button type ="submit" class="btn btn-success waves-effect hoverable"><i class="fa fa-check left"></i>Si</button>
+        </div>
+        </div>
+        <div class="md-form form-group">
+         <div class="text-xs-center">
+            <button class="btn btn-danger waves-effect hoverable" data-dismiss="modal" data-target="#mensaje_remove{{ location.codigo }}"><i class="fa fa-times left"></i>No</button>
+        </div>
+        </div>
+        </div>
+        </form>
+                </div>
+            </div>
+
+        </div>
+ 
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_imagen{{ location.codigo }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify  modal-full-height modal-right" role="document">
+    
+        <div class="modal-content">
+     
+            <div class="modal-header dark-header">
+                <p class="heading lead">{{  location.nombre }}</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+<img src="{{ asset('img/main/map/'~ location.codigo ~'.jpg') }}" class="img-fluid lostimg  img-thumbnail-dark" alt="{{  location.nombre }}"/>
+                <br>
+               <p class="lead"><strong>Capacidad:</strong> {{ location.capacidad }} Personas</p>
+                </div>
+            </div>
+
+        </div>
+ 
+    </div>
+</div>
+
+

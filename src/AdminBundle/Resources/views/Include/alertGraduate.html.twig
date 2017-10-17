@@ -1,0 +1,414 @@
+<div class="modal fade right" id="mensaje_tutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info modal-full-height modal-right" role="document">
+     
+        <div class="modal-content">
+        
+            <div class="modal-header dark-header">
+                <p class="heading lead">Atencion Administrador</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body ">
+                <div class="text-center">
+                   <i class="fa fa-bell fa-5x mb-1 animated rotateIn dark-icon"></i>
+ 
+										
+										<h5 class="h5-resposive">Antes de proceder a registrar los graduandos<br>Debes tener en cuenta lo siguiente:</h5>
+                </div>
+                <hr>
+                
+                
+<ul class="list-group fuentepdf">
+<center>
+	<li class="list-group-item"><h5 class="h5-resposive">
+		<i class="fa fa-hand-o-right  animated rotateIn info-icon" aria-hidden="true"></i> Se generan un número limitado de invitaciones ,por lo cual dicho número es la cantidad máxima de invitados por graduando.</h5>	
+  <img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tuto1.jpg') }}" alt="Tutorial #1"></li>
+
+  <li class="list-group-item"><h5 class="h5-resposive">
+		<i class="fa fa-hand-o-right  animated rotateIn info-icon" aria-hidden="true"></i> Debes registrar el Documento de identidad, Nombres y Apellidos de cada invitado,luego de ingresar los datos de todos los invitados haz click en el boton guardar.</h5>
+  <img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tuto2.jpg') }}" alt="Tutorial #2"></li>
+
+  <li class="list-group-item"><h5 class="h5-resposive">
+		<i class="fa fa-hand-o-right animated rotateIn info-icon" aria-hidden="true"></i> Para Generar la invitación de cada uno de los invitados haz click en el boton "Generar Invitación.</h5>
+<img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tuto3.jpg') }}" alt="Tutorial #3"></li>
+
+<li class="list-group-item"><h5 class="h5-resposive">
+<i class="fa fa-hand-o-right animated rotateIn info-icon" aria-hidden="true"></i> Cada invitado deberá presentar su Documento de identidad el día de la ceremonia.</h5>
+<img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tuto4.jpg') }}" alt="Tutorial #4"></li>
+</center>
+</ul>
+
+<br/>
+<div class="form-inline">
+<div class="md-form form-group">
+        <div class="text-xs-center">
+            <button id="btnsend" class="btn btn-unique waves-light hoverable"><i class="fa fa-send left"></i>Enviar</button>
+        </div>
+        </div>
+        <div class="md-form form-group">
+         <div class="text-xs-center">
+            <button id="btnclear" class="btn btn-danger waves-effect hoverable"><i class="fa fa-times left"></i>Cancelar</button>
+        </div>
+        </div>
+        </div>
+		
+
+							
+            </div>
+
+        </div>
+    
+    </div>
+</div>
+
+
+<div class="modal fade right" id="mensaje_removeAll" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-side modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header info-header ">
+                <p class="heading lead">¿Esta seguro?</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+           <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-question-circle fa-5x mb-1 animated rotateIn info-icon"></i>
+                    <p class="animated  tada lead imen">¿Esta seguro que desea eliminar todos los graduandos?</p>
+<div class="form-inline">
+<div class="md-form form-group">
+        <div class="text-xs-center">
+            <button id="btnremoveAll" class="btn btn-success waves-effect hoverable"><i class="fa fa-check left"></i>Si</button>
+        </div>
+        </div>
+        <div class="md-form form-group">
+         <div class="text-xs-center">
+            <button class="btn btn-danger waves-effect hoverable" data-dismiss="modal" data-target="#mensaje_removeAll"><i class="fa fa-times left"></i>No</button>
+        </div>
+        </div>
+        </div>
+                </div>
+            </div>
+
+        </div>
+ 
+    </div>
+</div>
+
+
+<div class="modal fade right" id="mensaje_registrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify  modal-full-height modal-right" role="document">
+     
+        <div class="modal-content">
+        
+            <div class="modal-header dark-header">
+                <p class="heading lead">Registrar Graduando</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body ">
+                <div class="text-center">
+                   <i class="fa fa-graduation-cap fa-5x mb-1 animated rotateIn dark-icon"></i>
+ 
+										
+										<h5 class="h5-resposive"> Informacion del graduando</h5>
+                </div>
+                <hr>
+                <br>
+                
+
+      <form id="insertForm" method="POST" action="{{ path('insertGraduate') }}">
+      
+<div class="md-form error_div">
+            <i class="fa fa-graduation-cap prefix"></i>
+            <input id="codigo" name="codigo" type="number" required class="form-control validate"  pattern="[0-9]{9,9}" title="Ingrese solo numeros">
+            <label for="codigo" data-error="Solo numeros" data-success="Correcto">Ingresa el codigo </label>
+        </div>
+<br>
+
+
+<div class="md-form error2_div">
+            <i class="fa fa-lock prefix"></i>
+            <input  type="password" class="form-control validate"  id="password" name="password" pattern="[A-Za-z0-9]{6,20}" title="Ingrese una contraseña válida"/>
+        <label data-error="Incorrecto" data-success="Correcto" for="username">Ingresa la contrase&ntilde;a.</label>
+            </div>
+      
+<br>
+
+<div class="md-form error3_div">
+            <i class="fa fa-envelope prefix"></i>
+            <input id="email" name="email" type="email" required class="form-control validate"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Ingrese un email v&aacute;lido">
+            <label for="email" data-error="Incorrecto" data-success="Correcto">Ingresa el email</label>
+        </div>
+<br>
+
+
+<div class="md-form error6_div">
+<i class="prefix"></i>
+          <em> <i class="fa fa-book fa-2x left icon left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Selecciona el programa académico</em>
+ 
+         <select id="programa" name="programa" data-placeholder="Seleccione el programa académico" class="chosen-select form-control validate" tabindex="5">
+             
+             {% for header in careers %}        
+            <optgroup label="{{ header[0] }}">
+             {% for career in header[1] %}
+   <option value ="{{career.codigo}}">{{career.codigo}}) {{career.nombre}}</option>
+          {% endfor %}    
+           </optgroup>
+              {% endfor %}
+               
+          </select>
+
+ </div>
+     <br> 
+<div class="md-form error4_div">
+           <i class="prefix"></i>
+            <input id="nombre" name="nombre" type="text" required class="form-control validate"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,50}" title="Ingrese solo letras">
+            <label for="nombre" data-error="Solo letras" data-success="Correcto">Ingresa el nombre</label>
+        </div>
+<br>
+
+<div class="md-form error5_div">
+         <i class="prefix"></i>
+            <input id="apellido" name="apellido" type="text" required class="form-control validate"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,50}" title="Ingrese solo letras">
+            <label for="apellido" data-error="Solo letras" data-success="Correcto">Ingresa el apellido</label>
+        </div>
+
+ <br>
+
+<center><button class="btn btn-lg  btn-unique waves-effect hoverable" id="btn-validar"><i class='fa fa-plus left'></i> Registrar</button>  </center>
+			</form>				
+            </div>
+
+        </div>
+    
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_validation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-full-height modal-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p id="mensajes" class="animated  tada  divimend"></p>
+                </div>
+            </div>
+
+        </div>
+ 
+    </div>
+</div>
+
+
+
+ <div class="modal fade right" id="mensaje_empty" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Hubo un error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p class="animated  tada lead imend">Por favor ingrese un archivo CSV.</p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+ <div class="modal fade right" id="mensaje_format" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Hubo un error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p class="animated  tada lead imend">El archivo CSV tiene un formato inválido.</p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_career" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Alerta!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-triangle fa-5x mb-1 animated rotateIn"></i>
+                    <p class="animated  tada lead imenw">El programa académico no existe.</p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Exito!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-5x mb-1 animated rotateIn"></i>
+                    <p class="animated  tada lead imens">Los cambios fueron efectuados.</p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_sendfail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Hubo un Error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p id="msf" class="animated  tada lead imend"></p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade right" id="mensaje_updatefail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Alerta!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-triangle fa-5x mb-1 animated rotateIn"></i>
+                    <p id="muf" class="animated  tada lead imenw"></p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_updatesuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Exito!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-5x mb-1 animated rotateIn"></i>
+                    <p id="mus" class="animated  tada lead imens"></p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

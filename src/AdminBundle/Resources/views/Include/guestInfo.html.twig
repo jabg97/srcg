@@ -1,0 +1,25 @@
+<br>
+<strong>{{ data[0].codigo }}</strong>
+<br>
+{{ data[0].apellido }} {{ data[0].nombre }}
+<br>
+{{ data[0].programa.nombre }}
+<hr>
+<table>
+    <tbody> 
+    
+	{% for guest in data[1] %}
+        <tr>
+        {% if guest.asistencia %} 
+            <td scope="row" class="checked">{{ guest.documento }}</td>
+            <td class="checked"> {{ guest.nombre }}</td>
+            <td class="checked">{{ guest.apellido }}</td>
+            {% else %} 
+            <td scope="row"><strong>{{ guest.documento }}</strong></td>
+            <td> {{ guest.nombre }}</td>
+            <td>{{ guest.apellido }}</td>
+            {% endif %}      
+        </tr>
+{% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,231 @@
+<div class="modal fade right" id="mensaje_registrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify  modal-full-height modal-right" role="document">
+     
+        <div class="modal-content">
+        
+            <div class="modal-header dark-header">
+                <p class="heading lead">Registrar Ubicacion</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body ">
+                <div class="text-center">
+                  <i class="fa fa-map-signs fa-5x mb-1 animated rotateIn dark-icon"></i>
+ <h5 class="h5-resposive"> Informacion de la ubicacion</h5>
+                   </div>
+                <hr>
+                <br>
+            
+{% set form = formObject.createView %}
+    {{ form_start(form,
+        { 'attr': {'class': 'insertForm'}}) }}
+
+<div class="md-form error_div">
+            <i class="prefix fa fa-map-signs"></i>
+        {{ form_widget(form.codigo,
+        { 'attr': {'class': 'form-control validate codigo','pattern': '[0-9]{1,2}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.codigo, 'Ingresa el codigo',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+        </div>
+<br>
+
+
+<div class="md-form error2_div">
+            <i class="prefix fa fa-users"></i>
+        {{ form_widget(form.capacidad,
+        { 'attr': {'class': 'form-control validate capacidad','pattern': '[0-9]{1,6}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.capacidad, 'Ingresa la capacidad',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+        </div>
+<br>
+
+<div class="md-form error3_div">
+            <i class="prefix fa fa-map-marker"></i>
+        {{ form_widget(form.zonas,
+        { 'attr': {'class': 'form-control validate zonas','min': '1','max': '3','pattern': '[0-9]{1,1}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.zonas, 'Ingresa las zonas',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+        </div>
+<br>
+
+<div class="md-form error4_div">
+            <i class="prefix fa fa-columns fa-rotate-270"></i>
+        {{ form_widget(form.filas,
+        { 'attr': {'class': 'form-control validate filas','pattern': '[0-9]{1,3}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.filas, 'Ingresa las filas',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+        </div>
+<br>
+<div class="md-form error5_div">
+<i class="prefix fa fa-columns"></i>
+        {{ form_widget(form.columnas,
+        { 'attr': {'class': 'form-control validate columnas','pattern': '[0-9]{1,3}','title': 'Ingrese solo numeros'}}) }}
+        {{ form_label(form.columnas, 'Ingresa las columnas',
+         {'label_attr': {'data-error': 'Solo numeros','data-success': 'Correcto'}
+         }) }}
+         </div>
+<br>
+
+<div class="md-form error6_div">
+          <i class="prefix"></i>
+        {{ form_widget(form.nombre,
+        { 'attr': {'class': 'form-control validate nombre','pattern': "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,50}",'title': 'Ingrese solo letras'}}) }}
+        {{ form_label(form.nombre, 'Ingrese el nombre',
+         {'label_attr': {'data-error': 'Solo letras','data-success': 'Correcto'}
+         }) }}
+    
+        </div>
+<br>
+
+<div class="md-form error7_div">
+          <i class="prefix"></i>
+        {{ form_widget(form.direccion,
+        { 'attr': {'class': 'form-control validate direccion'}}) }}
+        {{ form_label(form.direccion, 'Ingrese la direccion',
+         {'label_attr': {'data-error': 'Solo letras','data-success': 'Correcto'}
+         }) }}
+            
+        </div>
+<br>
+
+            <div id="map_div"  class="map_div">
+            {{ form_label(form.map, 'Seleccione un mapa PDF') }}
+        {{ form_widget(form.map,
+        { 'attr': {'class': 'form-control validate map','accept': 'application/pdf,application/x-pdf','required': 'required'}}) }}
+        
+					</div>
+                
+<br>
+
+ <div id="image_div"  class="image_div">
+    {{ form_label(form.image, 'Seleccione una imagen JPG o JPEG (600 x 400)px') }}
+        {{ form_widget(form.image,
+        { 'attr': {'class': 'form-control validate image','accept': 'image/jpeg,image/pjpeg','required': 'required'}}) }}
+     
+				</div>
+                <input type="hidden" name="action" value="insert" readonly/>
+<br>
+<center><button class="btn btn-lg  btn-unique btn-validar waves-light hoverable" id="btn-validar"><i class='fa fa-plus left'></i> Registrar</button>  </center>		
+{{ form_end(form) }}
+            </div>
+
+        </div>
+    
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_validation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-full-height modal-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p id="mensajes" class="animated  tada  divimend"></p>
+                </div>
+            </div>
+
+        </div>
+ 
+    </div>
+</div>
+
+
+ <div class="modal fade right" id="mensaje_empty" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Hubo un error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p class="animated  tada lead imend">Por favor suba todos los archivo.</p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+ <div class="modal fade right" id="mensaje_selected" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Hubo un error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p class="animated  tada lead imend">La ubicación esta seleccionada para el evento por lo tanto no puede ser eliminada.</p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade right" id="mensaje_success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Exito!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-5x mb-1 animated rotateIn"></i>
+                    <p class="animated  tada lead imens">Los cambios fueron efectuados.</p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

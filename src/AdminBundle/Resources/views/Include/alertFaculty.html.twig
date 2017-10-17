@@ -1,0 +1,193 @@
+<div class="modal fade right" id="mensaje_registrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify  modal-full-height modal-right" role="document">
+     
+        <div class="modal-content">
+        
+            <div class="modal-header dark-header">
+                <p class="heading lead">Registrar Facultad</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body ">
+                <div class="text-center">
+                  <i class="fa fa-bank fa-5x mb-1 animated rotateIn dark-icon"></i>
+ <h5 class="h5-resposive"> Informacion de la facultad</h5>
+                   </div>
+                <hr>
+                <br>
+                
+
+      <form id="insertForm" method="POST" action="{{ path('insertFaculty') }}">
+      
+<div class="md-form error_div">
+            <i class="prefix fa fa-bank"></i>
+            <input id="codigo" name="codigo" type="number" required class="form-control validate"  pattern="[0-9]{1,2}" title="Ingrese solo numeros">
+            <label for="codigo" data-error="Solo numeros" data-success="Correcto">Ingresa el codigo </label>
+        </div>
+<br>
+
+<div class="md-form error2_div div_colorpick">
+ <i class="prefix fa fa-paint-brush"></i>
+            <input id="color"  name="color" type="text" required class="form-control jscolor {borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#142b3b'} " value="FFFFFF" pattern="[a-zA-Z0-9]{6}" title="Ingrese un color valido">
+                         <label for="color" data-error="Solo letras" data-success="Correcto">Selecciona el color</label>
+            </div>
+
+
+     <br> 
+
+<div class="md-form error3_div">
+          <i class="prefix"></i>
+            <input id="nombre" name="nombre" type="text" required class="form-control validate"  pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,50}" title="Ingrese solo letras">
+            <label for="nombre" data-error="Solo letras" data-success="Correcto">Ingresa el nombre</label>
+        </div>
+<br>
+
+<center><button class="btn btn-lg  btn-unique waves-light hoverable" id="btn-validar"><i class='fa fa-plus left'></i> Registrar</button>  </center>
+			</form>
+            </div>
+
+        </div>
+    
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_validation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-full-height modal-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p id="mensajes" class="animated  tada  divimend"></p>
+                </div>
+            </div>
+
+        </div>
+ 
+    </div>
+</div>
+
+
+ 
+
+<div class="modal fade right" id="mensaje_success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Exito!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-5x mb-1 animated rotateIn"></i>
+                    <p class="animated  tada lead imens">Los cambios fueron efectuados.</p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_sendfail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Hubo un error!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-circle fa-5x mb-1 animated rotateIn"></i>
+                    <p id="msf" class="animated  tada lead imend"></p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade right" id="mensaje_updatefail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Alerta!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-exclamation-triangle fa-5x mb-1 animated rotateIn"></i>
+                    <p id="muf" class="animated  tada lead imenw"></p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade right" id="mensaje_updatesuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success modal-side  modal-bottom-right" role="document">
+
+        <div class="modal-content">
+     
+            <div class="modal-header">
+                <p class="heading lead">Exito!</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-5x mb-1 animated rotateIn"></i>
+                    <p id="mus" class="animated  tada lead imens"></p>
+                 </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

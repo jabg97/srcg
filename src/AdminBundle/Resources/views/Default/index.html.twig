@@ -1,0 +1,240 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Pagina principal
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/user/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+ <nav class="navbar hoverable navbar-toggleable-md navbar-light fixed-top scrolling-navbar">
+        <div class="container">          
+            <span class="navbar-brand">
+                <img src="{{ asset('img/general/logo.png') }}" class="img-fluid logouni" alt="logo"/>
+            </span>
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item waves-effect active">
+                    <a class="nav-link" style="color: black;cursor: default;"><i class="fa fa-home left"></i>&nbsp;Página Principal</a>
+                </li>
+               
+<li class="nav-item dropdown  btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-bank"></i>&nbsp;Información Académica</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminGraduate') }}"><i class="fa fa-graduation-cap left"></i>&nbsp;Graduandos</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminCareer') }}"><i class="fa fa-book left"></i>&nbsp;Programas Académicos</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminFaculty') }}"><i class="fa fa-bank left"></i>&nbsp;Facultades</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-ticket"></i>&nbsp;Información del Evento</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminLocation') }}"><i class="fa fa-map-signs left"></i>&nbsp;Ubicaciones</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminEvent') }}"><i class="fa fa-cogs left"></i>&nbsp;Configuración</a>
+                    </div>
+                </li>
+
+                
+            </ul>
+         
+            <ul class="navbar-nav nav-flex-left">
+              <li class="nav-item dropdown nombre btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-user-secret"></i>&nbsp;Administrador</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminPass') }}"><i class="fa fa-unlock-alt left"></i>&nbsp;Modificar Contrase&ntilde;a</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('logout') }}"><i class="fa fa-sign-out left"></i>&nbsp;Cerrar Sesion</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+
+<div class="administrator-header" ></div>
+    <div class="container free-bird">
+        <div class="row">
+
+<div class="card col-md-12 col-lg-12 col-sm-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+      
+ <div class="form-header red darken-3 z-depth-5 hoverable">
+            <h3><i class="fa fa-pie-chart"></i><strong> Estadísticas del Evento</strong></h3>
+        </div>
+ <div class="row">
+
+<div class="card col-md-12 col-lg-12 col-sm-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+      
+ <div class="form-header dark-header z-depth-5 hoverable">
+            <h3><i class="fa fa-bank"></i><strong> Facultades</strong></h3>
+        </div>
+        <div class="row">
+<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+<div class="card">
+<canvas id="doughnut-chart1" width="1000" height="1000"></canvas>
+</div>
+</div>
+<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+<div class="table-responsive table-hover table-striped">
+<table class="table" id="graduate-table">
+    <thead class="dark-header">
+        <tr>          
+            <th>Color</th>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Graduandos</th>
+        </tr>
+    </thead>
+    <tbody> 
+   {% for info_facultad in lista_Facultades %}
+        <tr>
+         <td style="background-color:{{info_facultad.color}};"> </td>
+            <td scope="row"><strong>{{ info_facultad.facultad }}</strong></td>
+             <td> {{ info_facultad.nombre }}</td>
+            <td> {{ info_facultad.graduandos }}</td>     
+        </tr>
+
+{% endfor %}
+
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+
+    </div>
+</div>
+</div>
+
+
+<div class="row">
+
+<div class="card col-md-12 col-lg-12 col-sm-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+      
+ <div class="form-header dark-header z-depth-5 hoverable">
+            <h3><i class="fa fa-book"></i><strong> Programas Academicos</strong></h3>
+        </div>
+        <div class="row">
+<div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
+<div class="card">
+<canvas id="doughnut-chart2" width="1000" height="1000"></canvas>
+</div>
+</div>
+
+<div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
+<div class="table-responsive table-hover table-striped">
+<table class="table" id="graduate-table">
+    <thead class="dark-header">
+        <tr>     
+            <th>Color</th>     
+            <th>Codigo</th>           
+            <th>Nombre</th>
+            <th>Graduandos</th>
+        </tr>
+    </thead>
+    <tbody> 
+    {% for key,info_carrera in lista_Carreras %}
+        <tr>
+         <td style="background-color:{{color_Carreras[key]}};"> </td>
+            <td scope="row"><strong>{{ info_carrera.programa }}</strong></td>
+             <td> {{ info_carrera.nombre }}</td>
+            <td> {{ info_carrera.graduandos }}</td>     
+        </tr>
+
+{% endfor %}
+
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+
+    </div>
+</div>
+</div>
+
+    </div>
+</div>
+
+ </div>
+</div>
+
+{% endblock %}   
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/admin/chart.js') }}" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+
+var facultades = {{(lista_Facultades|json_encode|raw)}};
+var nombre = [];
+var cantidad = [];
+var color = [];
+
+facultades.forEach( function(value, index, array) {
+   nombre.push(value.nombre);
+   color.push(value.color);
+   cantidad.push(value.graduandos);
+});
+
+   new Chart(document.getElementById("doughnut-chart1"), {
+    type: 'doughnut',
+    data: {
+      labels: nombre,
+      datasets: [
+        {
+          label: "Graduandos por Facultades",
+          backgroundColor: color,
+          data: cantidad
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Graduandos por Facultades'
+      }
+    }
+});
+
+var carreras = {{(lista_Carreras|json_encode|raw)}};
+var color = {{(color_Carreras|json_encode|raw)}};
+nombre = [];
+cantidad = [];
+
+
+carreras.forEach( function(value, index, array) {
+   nombre.push(value.nombre);
+   cantidad.push(value.graduandos);
+});
+
+new Chart(document.getElementById("doughnut-chart2"), {
+    type: 'doughnut',
+    data: {
+       labels: nombre,
+      datasets: [
+        {
+          label: "Graduandos por Programas Academico",
+          backgroundColor: color,
+          data: cantidad
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Graduandos por Programas Academico'
+      }
+    }
+});
+</script>
+{% endblock %}
+  

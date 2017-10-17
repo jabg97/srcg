@@ -1,0 +1,84 @@
+
+  {% extends 'base.html.twig' %}
+
+{% block title %}
+Sesion iniciada
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/login/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+  <div class="edge-header" ></div>
+
+    <div class="container free-bird">
+        <div class="row">
+
+<div class="card hoverable col-md-10 col-lg-10 col-sm-10 mx-auto float-xs-none white z-depth-5 py-2 px-2">
+    <div class="card-block" >
+
+     <form id="formu" class="form-signin" method="POST" action="check/">
+        <div class="form-header hoverable red darken-3 z-depth-5 ">
+        {% if is_granted('ROLE_ADMIN') %}
+<h3><i class="fa fa-user-secret"></i><strong> Sesion Iniciada</strong></h3>
+    {% else %}
+<h3><i class="fa fa-user-times"></i><strong> Sesion Iniciada</strong></h3>
+{% endif %}
+            
+        </div>
+ 
+ {% if is_granted('ROLE_ADMIN') %}
+        <div class='alert special-color-dark waves-light  text-white z-depth-3 hoverable imen'><center><strong><i class="fa fa-info-circle fa-1x left"></i></strong>&nbsp;&nbsp;Ya ha Iniciado Sesion con el Usuario! <strong>Administrador.</strong></center></div>
+    {% else %}
+        <div class='alert bg-danger waves-effect text-white z-depth-3 hoverable imen'><center><strong><i class="fa fa-info-circle fa-1x left"></i></strong>&nbsp;&nbsp;Ya ha Iniciado Sesion con el Usuario! <strong>{{ app.session.get('nombre') }} {{ app.session.get('apellido') }}.</strong></center></div>
+{% endif %}
+        
+        <div class="form-inline">
+
+        
+         {% if is_granted('ROLE_ADMIN') %}
+         
+         <div class="md-form form-group">
+         <div class="text-xs-center">
+    <a href="{{ path('admin') }}" class="btn btn-unique btn-lg waves-light hoverable"> <i class="fa fa-home left"></i>Pagina Principal</a>
+     </div>
+        </div>
+        
+        <div class="md-form form-group">
+         <div class="text-xs-center">
+    <a href="{{ path('logout') }}" class="btn btn-danger btn-lg waves-effect hoverable"><i class="fa fa-close left"></i>Cerrar sesion</a>
+            
+        </div>
+        </div>
+        
+    {% else %}
+    <div class="md-form form-group">
+         <div class="text-xs-center">
+    <a href="{{ path('graduate') }}" class="btn btn-unique btn-lg waves-light hoverable"> <i class="fa fa-home left"></i>Pagina Principal</a>
+    </div>
+        </div>
+        
+     <div class="md-form form-group">
+         <div class="text-xs-center">
+    <a href="{{ path('logout') }}" class="btn btn-danger btn-lg waves-effect hoverable"><i class="fa fa-close left"></i>Cerrar sesion</a>
+            
+        </div>
+        </div>
+    
+   
+{% endif %}
+            
+        
+        
+        
+        </div>
+     </form>
+    </div>
+
+    </div>
+
+</div>
+           
+        </div>
+          {% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Pagina principal
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/user/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+  <nav class="navbar hoverable navbar-toggleable-md navbar-light fixed-top scrolling-navbar">
+        <div class="container">          
+            <span class="navbar-brand">
+                <img src="{{ asset('img/general/logo.png') }}" class="img-fluid logouni" alt="logo"/>
+            </span>
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item waves-effect active ">
+                    <a class="nav-link" style="color: black;cursor: default;"><i class="fa fa-home left"></i>&nbsp;Pagina Principal</a>
+                </li>
+                <li class="nav-item waves-effect">
+                  <a id="ir" class="nav-link" href="{{ path('graduateHelp') }}"><i class="fa fa-life-ring left"></i>&nbsp;Ayuda</a>
+                </li>
+                
+            </ul>
+         
+            <ul class="navbar-nav nav-flex-left">
+              <li class="nav-item dropdown nombre btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-graduation-cap left"></i>&nbsp;{{ app.session.get('nombre') }} {{ app.session.get('apellido') }}</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('graduatePass') }}"><i class="fa fa-unlock-alt left"></i>&nbsp;Modificar Contrase&ntilde;a</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('logout') }}"><i class="fa fa-sign-out left"></i>&nbsp;Cerrar Sesion</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="graduate-header" ></div>
+
+    <div class="container free-bird">
+
+<form class="form-signin" method="POST" action="{{ path('graduateRegisterGuest') }}">
+
+<div class="row">
+<input  name="cantidad" id="cantidad" type="hidden"  class="form-control disabled" value="{{ size }}"/>
+</div>
+
+        <div class="row">
+
+{% for i in range(0, size-1) %}
+{% include 'GraduateBundle:Include:guest.html.twig'  %} 
+{% endfor %}
+</div>
+
+{% if  mostrar %}
+  <br/>
+<br/>
+  
+<div class="row">
+   <div class='alert alert-info waves-effect col-xs-12 col-sm-12 col-md-12 col-lg-12 z-depth-5 hoverable'>
+       <span  class="close" data-dismiss="alert" aria-label="close">&times;</span>
+       <div  id='todo'>
+       <center>
+       <strong>
+ 
+       {% for i in range(0, sizemen-1) %}
+   {% if icons[i] == 'R' %}
+       <span class="imen"><i class="fa fa-1x fa-check left"></i>&nbsp;{{ messages[i] }}</span><br/>
+    {% endif %}
+       
+      {% if icons[i] == 'A' %}
+       <span class="imen"><i class="fa fa-1x fa-pencil left"></i>&nbsp;{{ messages[i] }}</span><br/>
+    {% endif %}
+
+   {% if icons[i] == 'E' %}
+      <span class="imen"><i class="fa fa-1x fa-times left"></i>&nbsp;{{ messages[i] }}</span><br/>
+   {% endif %}
+
+  {% if icons[i] == 'I' %}
+      <span class="imen"><i class="fa fa-1x fa-exclamation-triangle left"></i>&nbsp;{{ messages[i] }}</span><br/>
+    {% endif %}
+
+{% if icons[i] == 'V' %}
+      <span class="imen"><i class="fa fa-1x fa-exclamation-circle left"></i>&nbsp;{{ messages[i] }}</span><br/>
+    {% endif %}
+
+{% if icons[i] == 'P' %}
+     <span class="imen"><i class="fa fa-1x fa-info-circle left"></i>&nbsp;{{ messages[i] }}</span><br/>
+    {% endif %}
+      
+      {% endfor %}
+
+       </strong>
+       </center>
+       </div>
+       </div>  
+</div>
+{% endif %}
+
+<br/>
+<div class="row flex-center">
+<center>
+<div class="form-inline">
+
+    <div class="md-form form-group">
+        <div class="text-xs-center">
+    <button id="btn_validar" type="submit" class="btn btn-danger btn-lg waves-effect hoverable"><i class='fa fa-send left'></i>Enviar</button>  
+    </div>
+    </div>
+    {% if activar %}
+    {% if invitation %}
+<div class="md-form form-group">
+         <div class="text-xs-center">
+            <a class="btn btn-unique btn-lg waves-light hoverable" href="{{ path('graduateInvitation') }}" target="_blank"><i class="fa fa-ticket left"></i>Invitaciones</a>
+        </div>
+        </div>
+        {% endif %}
+        {% endif %}
+</div>
+ </center>
+</div>
+
+</form> 
+
+
+
+</div>
+{% include 'GraduateBundle:Include:alert.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/graduate/script.js') }} " charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8" >
+var  mostrar="{{ mostrar }}";
+var  contador="{{app.session.get('contador')}}";
+
+     if(mostrar){
+$('#mensajes').focus().html("<font class='text-muted'>"+ $('#todo').html()+"</font><br>"); 
+$("#mensaje_exito").modal('show');
+     }
+
+     if(contador == 1){
+$("#mensaje_info").modal('show');
+     }
+
+
+      </script>
+{% endblock %}

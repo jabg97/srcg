@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+         {% if is_granted('ROLE_ADMIN') %}
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('adminFavicon.ico') }}" />
+    {% elseif is_granted('ROLE_USER') %}
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('graduateFavicon.ico') }}" />
+    {% else %}
+    
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+{% endif %}
+        
+        
+        <link rel="stylesheet" type="text/css"  href="{{ asset('css/bootstrap.css') }}"/>
+        <link rel="stylesheet" type="text/css"  href="{{ asset('css/mdb.css') }}"/>
+        <link rel="stylesheet" type="text/css"  href="{{ asset('css/font-awesome.min.css') }}"/>
+        {% block stylesheets %}{% endblock %}       
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+        <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}" charset="utf-8"></script>   
+        <script type="text/javascript" src="{{ asset('js/tether.min.js') }}" charset="utf-8"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}" charset="utf-8"></script>
+        <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}" charset="utf-8"></script>  
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

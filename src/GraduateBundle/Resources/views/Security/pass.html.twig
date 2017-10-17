@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Modificar contrase&ntilde;a
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/user/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+ <nav class="navbar hoverable navbar-toggleable-md navbar-light fixed-top scrolling-navbar">
+        <div class="container">          
+            <span class="navbar-brand">
+                <img src="{{ asset('img/general/logo.png') }}" class="img-fluid logouni" alt="logo"/>
+            </span>
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item waves-effect">
+                    <a class="nav-link" href="{{ path('graduate') }}"><i class="fa fa-home left"></i>&nbsp;Pagina Principal</a>
+                </li>
+                <li class="nav-item waves-effect">
+                  <a id="ir" class="nav-link" href="{{ path('graduateHelp') }}"><i class="fa fa-life-ring left"></i>&nbsp;Ayuda</a>
+                </li>
+                
+            </ul>
+         
+            <ul class="navbar-nav nav-flex-left">
+              <li class="nav-item dropdown nombre btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-graduation-cap left"></i>&nbsp;{{ app.session.get('nombre') }} {{ app.session.get('apellido') }}</strong></a>
+                    <div class="dropdown-menu dropdown dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable now"><i class="fa fa-unlock-alt left"></i>&nbsp;Modificar Contrase&ntilde;a</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('logout') }}"><i class="fa fa-sign-out left"></i>&nbsp;Cerrar Sesion</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+
+<div class="password-header" ></div>
+
+    <div class="container free-bird">
+        <div class="row">
+<div class="card col-md-10 col-lg-10 col-sm-10 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+ <div class="card-block" >
+
+     <form id="formu" action="{{ path('changePassword') }}" method="POST">
+        <div class="form-header red darken-3 z-depth-5 hoverable">
+            <h3><i class="fa fa-lock"></i><strong> Modificar Contrase&ntilde;a</strong></h3>
+        </div>
+ 
+         <div class="md-form error_div">
+            <i class="fa fa-lock prefix"></i>
+            <input type="password" required id="passA" class="form-control validate vacipassA"  name="passA" pattern="[A-Za-z0-9]{6,20}" title="Ingrese una contraseña válida">
+            <label for="password" data-error="Incorrecto" data-success="Correcto">Contrase&ntilde;a actual</label>
+        </div>
+<br>
+        <div class="md-form error2_div">
+            <i class="fa fa-unlock-alt prefix"></i>
+            <input type="password" id="passN" required class="form-control validate vacipassN"  name="passN" pattern="[A-Za-z0-9]{6,20}" title="Ingrese una contraseña válida">
+            <label for="password" data-error="Incorrecto" data-success="Correcto">Nueva contrase&ntilde;a</label>
+        </div>
+<br>
+            <div class="md-form error3_div">
+            <i class="fa fa-unlock prefix"></i>
+            <input type="password" id="passR" required class="form-control validate vacipassR"  name="passR" pattern="[A-Za-z0-9]{6,20}" title="Ingrese una contraseña válida">
+            <label for="password" data-error="Incorrecto" data-success="Correcto">Repetir contrase&ntilde;a</label>
+        </div>
+
+        <div class="form-inline">
+<div class="md-form form-group">
+        <div class="text-xs-center">
+            <button class="btn btn-danger btn-lg boton waves-effect hoverable" type="submit"><i class="fa fa-key left"></i>Modificar Contrase&ntilde;a</button>
+        </div>
+        </div>
+        </div>
+     </form>
+
+  <div class="error4_div form-group">	</div>	
+
+	{% if error == "error" %}
+       <div class='error alert bg-danger waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> Por favor ingrese todos los campos con una longitud entre 6 y 20 caracteres.</center></div>
+                        {% endif %}
+
+        {% if error == "fail" %}
+       <div class='error alert bg-danger waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> La contrase&ntilde;a actual es incorrecta.</center></div>
+                        {% endif %}                
+    
+    {% if error == "equals" %}
+     <div class='error2 alert bg-warning waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-triangle left'></i>&nbsp;&nbsp;Error!</strong> Ingrese una contrase&ntilde;a diferente a la actual.</center></div>
+                        {% endif %}
+
+{% if error == "different" %}
+<div class='error3 alert bg-warning waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-triangle left'></i>&nbsp;&nbsp;Error!</strong>La contrase&ntilde;a no coincide.</center></div> 
+{% endif %}
+    
+  
+        </div>
+
+    </div>
+    </div>
+    </div>
+</div>
+    {% include 'AppBundle:Security:alert.html.twig' %}
+{% endblock %}         
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/security/script.js') }}" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+var  error="{{ error }}";
+
+     if(error == "error"){
+$("#mensaje_error").modal('show');
+     }
+
+     if(error == "equals"){
+$("#mensaje_equals").modal('show');
+     }
+
+if(error == "fail"){
+$("#mensaje_fail").modal('show');
+     }
+
+     if(error == "different"){
+ $("#mensaje_different").modal('show');
+      }
+    
+
+      </script>
+    
+{% endblock %}         

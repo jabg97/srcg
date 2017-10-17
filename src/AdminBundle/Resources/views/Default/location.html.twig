@@ -1,0 +1,236 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Gestión de Ubicaciones
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/user/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+ <nav class="navbar hoverable navbar-toggleable-md navbar-light fixed-top scrolling-navbar">
+        <div class="container">          
+            <span class="navbar-brand">
+                <img src="{{ asset('img/general/logo.png') }}" class="img-fluid logouni" alt="logo"/>
+            </span>
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item waves-effect">
+                    <a class="nav-link" href="{{ path('admin') }}"><i class="fa fa-home left"></i>&nbsp;Página Principal</a>
+                </li>
+               
+<li class="nav-item dropdown  btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-bank"></i>&nbsp;Información Académica</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminGraduate') }}"><i class="fa fa-graduation-cap left"></i>&nbsp;Graduandos</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminCareer') }}"><i class="fa fa-book left"></i>&nbsp;Programas Académicos</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminFaculty') }}"><i class="fa fa-bank left"></i>&nbsp;Facultades</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-ticket"></i>&nbsp;Información del Evento</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable now"><i class="fa fa-map-signs left"></i>&nbsp;Ubicaciones</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminEvent') }}"><i class="fa fa-cogs left"></i>&nbsp;Configuración</a>
+                    </div>
+                </li>
+
+                
+            </ul>
+         
+            <ul class="navbar-nav nav-flex-left">
+              <li class="nav-item dropdown nombre btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-user-secret"></i>&nbsp;Administrador</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminPass') }}"><i class="fa fa-unlock-alt left"></i>&nbsp;Modificar Contrase&ntilde;a</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('logout') }}"><i class="fa fa-sign-out left"></i>&nbsp;Cerrar Sesion</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+
+
+<div class="graduate-header" ></div>
+    <div class="container free-bird">
+        <div class="row">
+
+<div class="card col-md-12 col-lg-12 col-sm-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+      
+ <div class="form-header red darken-3 z-depth-5 hoverable">
+            <h3><i class="fa fa-map-signs"></i><strong> Gestión de Ubicaciones</strong></h3>
+        </div>
+<center>
+
+  <div class="col-md-11 col-lg-11 col-sm-11 col-xs-11">
+
+<div class="table-responsive table-hover table-striped">
+<table class="table" id="location-table">
+    <thead class="dark-header">
+        <tr>
+             <th>{{ knp_pagination_sortable(pagination, 'Codigo', 'location.codigo') }}</th>
+            <th{% if pagination.isSorted('location.nombre') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Nombre', 'location.nombre') }}
+            </th>
+             <th{% if pagination.isSorted('location.direccion') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Direccion', 'location.direccion') }}
+            </th>
+            <th{% if pagination.isSorted('location.capacidad') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Capacidad', 'location.capacidad') }}
+            </th>
+            <th{% if pagination.isSorted('location.zonas') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Zonas', 'location.zonas') }}
+            </th>
+            <th{% if pagination.isSorted('location.filas') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Filas', 'location.filas') }}
+            </th>
+            <th{% if pagination.isSorted('location.columnas') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Columnas', 'location.columnas') }}
+            </th>
+            <th>Mapa</th>
+            <th>Imagen</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </tr>
+    </thead>
+    <tbody> 
+    {% for location in pagination %}
+        <tr>
+            <td scope="row"><strong>{{ location.codigo }}</strong></td>
+            <td> {{ location.nombre }}</td>
+            <td> {{ location.direccion }}</td>
+            <td> {{ location.capacidad }}</td>
+            <td> {{ location.zonas }}</td>
+            <td> {{ location.filas }}</td>
+            <td> {{ location.columnas }}</td>   
+            <td><a target="_blank" href="{{ asset('documents/map/'~ location.codigo ~'.pdf') }}" class="btn btn-unique btn-sm waves-light hoverable">
+            <i class="fa fa-map left"></i>Mapa</a></td>
+            <td><button class="btn btn-sm  btn-unique waves-light hoverable" data-toggle="modal" data-target="#mensaje_imagen{{ location.codigo }}">
+            <i class='fa fa-camera left'></i>Imagen</button></td> 
+            <td><button class="btn btn-sm  btn-unique waves-light hoverable" data-toggle="modal" data-target="#mensaje_actualizar{{ location.codigo }}">
+            <i class='fa fa-pencil left'></i>Editar</button></td> 
+            <td>
+            <button  class="btn btn-danger btn-sm waves-effect hoverable" data-toggle="modal" data-target="#mensaje_remove{{ location.codigo }}">
+            <i class="fa fa-times left"></i>Borrar</button></td>
+        </tr>
+
+{% endfor %}
+
+    </tbody>
+</table>
+</div>
+<div class="row">
+ <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+<div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+     </div>
+     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+     <h4> <span class="badge special-color-dark" style="float:right;">
+            Cantidad de Ubicaciones: {{ pagination.getTotalItemCount }}
+        </span> </h4>
+        </div>
+          
+        </div>
+<br/><br/>
+
+  
+  <div class="row">
+
+
+  <div class="col-md-12 col-lg-12">
+<div class="card z-depth-4 hoverable">
+    <div class="card-header dark-header white-text z-depth-4 hoverable">
+       <i class="fa fa-plus left lead"></i><strong> Registrar Ubicacion</strong>
+    </div>
+    <div class="card-block">
+        <h5 class="card-title">Ingresar los datos para registrar una nueva ubicacion.</h5>
+
+  <div class="div_insert">
+        <button class="btn btn-lg  btn-unique waves-light hoverable" data-toggle="modal" data-target="#mensaje_registrar"><i class='fa fa-plus left'></i> Registrar</button>  
+</div>
+    </div>
+</div>
+</div></div>
+
+
+<br><br>
+<div class="row">
+<div class="col-md-12 col-lg-12">
+
+{% if message == "success" %}
+<div class='error alert bg-success waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-check left'></i>&nbsp;&nbsp;Exito!</strong> Los cambios fueron efectuados.</center></div>
+{% endif %}
+
+{% if message == "empty" %}
+<div class='error alert bg-danger waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> Por favor suba todos los archivos.</center></div>
+{% endif %}
+
+{% if message == "selected" %}
+<div class='error alert bg-danger waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> La ubicación esta seleccionada para el evento por lo tanto no puede ser eliminada.</center></div>
+{% endif %}
+
+{% if errors %}
+<div class='error alert alert-info waves-effect text-muted z-depth-5 hoverable'>
+ <span  class="close" data-dismiss="alert" aria-label="close">&times;</span>
+ <div  id='todo'>
+       <center>
+       {% if message == "error" %}
+{% for error in errors %}
+   <span class="imen"> <strong><i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> {{error.message}}</span><br>
+{% endfor %}
+{% endif %}
+</center></div></div>
+{% endif %}
+</div></div>
+
+</div>
+ 
+    </div>
+    </div>
+</div>
+ </div>
+</div>
+{% for location in pagination %}
+{% include 'AdminBundle:Include:formLocation.html.twig'  %}
+{% endfor %} 
+{% include 'AdminBundle:Include:alertLocation.html.twig'  %}
+ 
+ {% endblock %}   
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/admin/location/form.js') }}" charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+
+var  message="{{ message }}";
+
+if(message == "success"){
+$("#mensaje_success").modal('show');
+     }
+
+     if(message == "empty"){
+$("#mensaje_empty").modal('show');
+     }
+
+     if(message == "selected"){
+$("#mensaje_selected").modal('show');
+     }
+
+if(message == "error"){
+$('#mensajes').focus().html("<font class='text-muted'>"+ $('#todo').html()+"</font><br>"); 
+$("#mensaje_validation").modal('show');
+     }
+
+</script>
+{% endblock %}
+  

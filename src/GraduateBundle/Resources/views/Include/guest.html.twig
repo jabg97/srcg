@@ -1,0 +1,31 @@
+<div class="card col-md-4 col-lg-4 col-sm-6 col-xs-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+       <div class="form-header red darken-3 z-depth-5 hoverable">
+            <h3><i class="fa fa-id-badge"></i> <strong>Invitado #{{ i+1  }}</strong></h3>
+        </div>
+      <div class="md-form">
+            <i class="fa fa-id-card prefix"></i>
+            <input id="documento{{ i+1 }}" name="documento{{ i+1 }}" type="number" class="form-control validate" value="{{ guests[i].documento }}"  placeholder="{{ guests[i].documento }}" pattern="[0-9]{1,20}" title="Ingrese solo numeros">
+            <label for="documento{{ i+1 }}" data-error="Solo numeros" data-success="Correcto">Ingresa el Documento</label>
+        </div>
+<br>
+<div class="md-form">
+           <i class="prefix"></i>
+            <input id="nombre{{ i+1 }}" name="nombre{{ i+1 }}" type="text" class="form-control validate" value="{{ guests[i].nombre }}" placeholder="{{ guests[i].nombre }}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,50}" title="Ingrese solo letras">
+            <label for="nombre{{ i+1 }}" data-error="Solo letras" data-success="Correcto">Ingresa el nombre</label>
+        </div>
+<br>
+
+<div class="md-form">
+         <i class="prefix"></i>
+            <input id="apellido{{ i+1 }}" name="apellido{{ i+1 }}" type="text" class="form-control validate" value="{{ guests[i].apellido }}"  placeholder="{{ guests[i].apellido }}" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,50}" title="Ingrese solo letras">
+            <label for="apellido{{ i+1 }}" data-error="Solo letras" data-success="Correcto">Ingresa el apellido</label>
+        </div>
+
+            <input id="anterior{{ i+1 }}" name="anterior{{ i+1 }}" type="hidden"  class="form-control disabled" value="{{ guests[i].documento }}"  placeholder="{{ guests[i].documento }}">
+           
+<br>
+
+</div>
+
+        </div>     

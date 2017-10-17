@@ -1,0 +1,238 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Menu de ayuda
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/user/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+ <nav class="navbar hoverable navbar-toggleable-md navbar-light fixed-top scrolling-navbar">
+        <div class="container">          
+            <span class="navbar-brand">
+                <img src="{{ asset('img/general/logo.png') }}" class="img-fluid logouni" alt="logo"/>
+            </span>
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item waves-effect">
+                    <a class="nav-link" href="{{ path('graduate') }}"><i class="fa fa-home left"></i>&nbsp;Pagina Principal</a>
+                </li>
+                <li class="nav-item waves-effect active">
+                  <a id="ir" class="nav-link" style="color: black;cursor: default;"><i class="fa fa-life-ring left"></i>&nbsp;Ayuda</a>
+                </li>
+                
+            </ul>
+         
+            <ul class="navbar-nav nav-flex-left">
+              <li class="nav-item dropdown nombre btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-graduation-cap left"></i>&nbsp;{{ app.session.get('nombre') }} {{ app.session.get('apellido') }}</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('graduatePass') }}"><i class="fa fa-unlock-alt left"></i>&nbsp;Modificar Contrase&ntilde;a</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('logout') }}"><i class="fa fa-sign-out left"></i>&nbsp;Cerrar Sesion</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+
+<div class="help-header" ></div>
+    <div class="container free-bird">
+        <div class="row">
+
+<div class="card col-md-12 col-lg-12 col-sm-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+      
+ <div class="form-header red darken-3 z-depth-5 hoverable">
+            <h3><i class="fa fa-support"></i><strong> Menu de Ayuda</strong></h3>
+        </div>
+<center>
+
+  <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+
+    
+    <div class="panel-group" id="accordion">
+  
+<div class="card z-depth-5 hoverable">
+<a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse1"> 
+ <div class="card-header header z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+ ¿Cómo registrar un invitado?
+      </h4>
+    </div>
+    </a>
+    <div id="collapse1" class="panel-collapse collapse out card-block">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">Para registrar un invitado llene todos los campos del invitado y presione el boton de guardar.</h5>
+    </div>
+    </div>
+  </div>
+
+  <div class="card z-depth-5 hoverable">
+  <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse2"> 
+ <div class="card-header header2 z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+ ¿Cómo editar un invitado?
+      </h4>
+    </div>
+    </a>
+    <div id="collapse2" class="panel-collapse collapse out card-block">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">Para editar un invitado edite los datos del invitado y presione el boton de guardar.</h5>
+    </div>
+    </div>
+  </div>
+  
+  <div class="card z-depth-5 hoverable">
+  <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+ <div class="card-header header z-depth-5 hoverable flex-center"> 
+<h4 class="lead h4-responsive md">  
+ ¿Cómo eliminar un invitado?
+      </h4>
+    </div>
+    </a>
+    <div id="collapse3" class="panel-collapse collapse out card-block">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">Para eliminar un invitado borre los datos del invitado y presione el boton de guardar.</h5>
+    </div>
+    </div>
+  </div>
+{% if activar %}
+  <div class="card z-depth-5 hoverable">
+  <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse4"> 
+ <div class="card-header header2 z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+ ¿Qué hago con las invitaciones generadas?
+      </h4>
+    </div>
+    </a>
+    <div id="collapse4" class="panel-collapse collapse out card-block">
+    <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">Las invitaciones que se generan en esta aplicación deben ser presentadas el día de la ceremonia para poder ingresar al lugar.</h5>
+    </div>
+    </div>
+  </div>
+
+  <div class="card z-depth-5 hoverable">
+  <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse5"> 
+ <div class="card-header header z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+ ¿Cuántas personas pueden acceder con una invitación?
+      </h4>
+    </div>
+    </a>
+    <div id="collapse5" class="panel-collapse collapse out card-block">
+     <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">Solo una persona por invitación.</h5>
+    </div>
+    </div>
+  </div>
+
+  <div class="card z-depth-5 hoverable">
+  <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse6"> 
+ <div class="card-header header2 z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+¿Cómo debo presentar la invitación?
+      </h4>
+    </div>
+    </a>
+    <div id="collapse6" class="panel-collapse collapse out card-block">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">Las invitaciones que se generan en esta aplicación pueden ser descargadas a un teléfono celular que posea un lector de documentos .pdf o se pueden imprimir.</h5>
+    </div>
+    </div>
+  </div>
+
+<div class="card z-depth-5 hoverable">
+<a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse7"> 
+ <div class="card-header header z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+ ¿Puedo solicitar más Invitaciones?
+      </h4>
+    </div>
+    </a>
+    <div id="collapse7" class="panel-collapse collapse out">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">No.</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="card z-depth-5 hoverable">
+  <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse8"> 
+ <div class="card-header header2 z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+¿Qué hago si extravío mi invitación?
+      </h4>
+    </div>
+    </a>
+    <div id="collapse8" class="panel-collapse collapse out">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">Puede presentar el documento con el cual fue registrado en la aplicación.</h5>
+    </div>
+    </div>
+  </div>
+<div class="card z-depth-5 hoverable">
+ <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse9"> 
+ <div class="card-header header z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+¿Cuál es la fecha límite para registrar los invitados?
+      </h4>
+    </div>
+   </a>
+    <div id="collapse9" class="panel-collapse collapse out">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">La fecha límite para registrar los invitados es el día  {{fecha_limite }} a las {{ hora_limite }}.</h5>
+    </div>
+    </div>
+  </div>
+
+  {% else %}
+<div class="card z-depth-5 hoverable">
+ <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse9"> 
+ <div class="card-header header2 z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+¿Que debo presentar el dia de la ceremonia?
+      </h4>
+    </div>
+   </a>
+    <div id="collapse9" class="panel-collapse collapse out">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">El dia de la ceremonia debe presentar su documento de identidad.</h5>
+    </div>
+    </div>
+  </div>
+  <div class="card z-depth-5 hoverable">
+ <a class="nd" data-toggle="collapse" data-parent="#accordion" href="#collapse10"> 
+ <div class="card-header header z-depth-5 hoverable flex-center">
+<h4 class="lead h4-responsive md">  
+¿Cuál es la fecha límite para registrar los invitados?
+      </h4>
+    </div>
+   </a>
+    <div id="collapse10" class="panel-collapse collapse out">
+      <div class="card-block">
+      <h5 class="card-title text-muted lead h5-responsive">La fecha límite para registrar los invitados es el día  {{fecha_limite }} a las {{ hora_limite }}.</h5>
+    </div>
+    </div>
+  </div>
+  {% endif %}
+
+  
+<br><br>
+</div>
+</div>
+</center>
+  </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}      

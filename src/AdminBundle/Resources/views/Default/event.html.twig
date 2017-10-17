@@ -1,0 +1,396 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Configuración del Evento
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/user/style.css') }}"/>
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/admin/material-datetime-picker.css') }}"/>
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/admin/cs-select.css') }}"/>
+
+<style>
+
+{% for location in locations %}
+.cs-skin-boxes .cs-options li.location{{location.codigo}} {
+  background-color: #d11c23; 
+    background-image: url('{{ asset('img/main/map/'~ location.codigo ~'.jpg') }}');
+    background-size: 100% 100%;
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%);
+    transition: .5s; 
+}
+
+{% endfor %}
+
+
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+ <nav class="navbar hoverable navbar-toggleable-md navbar-light fixed-top scrolling-navbar">
+        <div class="container">          
+            <span class="navbar-brand">
+                <img src="{{ asset('img/general/logo.png') }}" class="img-fluid logouni" alt="logo"/>
+            </span>
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item waves-effect">
+                    <a class="nav-link" href="{{ path('admin') }}"><i class="fa fa-home left"></i>&nbsp;Página Principal</a>
+                </li>
+               
+<li class="nav-item dropdown  btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-bank"></i>&nbsp;Información Académica</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminGraduate') }}"><i class="fa fa-graduation-cap left"></i>&nbsp;Graduandos</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminCareer') }}"><i class="fa fa-book left"></i>&nbsp;Programas Académicos</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminFaculty') }}"><i class="fa fa-bank left"></i>&nbsp;Facultades</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-ticket"></i>&nbsp;Información del Evento</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminLocation') }}"><i class="fa fa-map-signs left"></i>&nbsp;Ubicaciones</a>
+                        <a class="dropdown-item waves-effect hoverable now"><i class="fa fa-cogs left"></i>&nbsp;Configuración</a>
+                    </div>
+                </li>
+
+                
+            </ul>
+         
+            <ul class="navbar-nav nav-flex-left">
+              <li class="nav-item dropdown nombre btn-group">
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-user-secret"></i>&nbsp;Administrador</strong></a>
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('adminPass') }}"><i class="fa fa-unlock-alt left"></i>&nbsp;Modificar Contrase&ntilde;a</a>
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('logout') }}"><i class="fa fa-sign-out left"></i>&nbsp;Cerrar Sesion</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+
+<div class="event-header" ></div>
+    <div class="container free-bird">
+        <div class="row">
+
+<div class="card col-md-12 col-lg-12 col-sm-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+   <form id="formu" action="{{ path('updateEvent') }}" method="POST">
+    <div class="card-block" >
+      
+ <div class="form-header red darken-3 z-depth-5 hoverable">
+            <h3><i class="fa fa-cogs"></i><strong> Configuración del Evento</strong></h3>
+        </div>
+<center>
+
+  <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+
+<div class="md-form">
+           <i class="prefix"></i>
+            <input id="fecha_limite" required value="{{event.fechalimite|date('Y-m-d H:i')}}"  name="fecha_limite" type="text" class="form-control validate fecha_limite" >
+            <label for="fecha_limite" data-error="Incorrecto" data-success="Correcto">Ingresa la fecha limite</label>
+        </div>
+<br/>
+        <div class="md-form">
+           <i class="prefix"></i>
+            <input id="fecha_evento" required value="{{event.fechaevento|date('Y-m-d H:i')}}"  name="fecha_evento" type="text" class="form-control validate fecha_evento" >
+            <label for="fecha_evento" data-error="Incorrecto" data-success="Correcto">Ingresa la fecha del evento</label>
+        </div>
+<br/>
+         <div class="md-form error_div">
+           <i class="fa prefix"></i>
+            <input id="pass" required value="{{event.password}}"  name="password" type="text" class="form-control validate pass" pattern="[A-Za-z0-9]{1,20}" title="Ingrese caracteres validos">
+            <label for="pass" data-error="Incorrecto" data-success="Correcto">Ingresa la contraseña</label>
+        </div>
+
+<br/>
+<div class="row flex-center">
+<label class="lead">Tipo de invitación</label>
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+<div class="btn-group toggle-form" data-toggle="buttons">
+{% if event.tipo %}
+ <label class="btn btn-danger btn-lg waves-effect hoverable active">
+    <input type="radio" name="tipo" id="tipo" value="1" autocomplete="off" checked> Digital
+  </label>
+  <label class="btn btn-danger btn-lg waves-effect  hoverable">
+    <input type="radio" name="tipo" id="tipo" value="0" autocomplete="off"> Ninguna
+  </label>
+    {% else %}
+   <label class="btn btn-danger btn-lg waves-effect hoverable">
+    <input type="radio" name="tipo" id="tipo" value="1" autocomplete="off"> Digital
+  </label>
+  <label class="btn btn-danger btn-lg waves-effect  hoverable active">
+    <input type="radio" name="tipo" id="tipo" value="0" autocomplete="off" checked> Ninguna
+  </label>
+ {% endif %}
+ 
+
+</div>
+</div>
+  </div>
+
+<br/><br/>
+<div class="row flex-center">
+<label class="lead">Calcular invitados</label>
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+<div class="btn-group toggle-form" data-toggle="buttons">
+ <label class="btn btn-danger btn-lg waves-effect hoverable active">
+    <input type="radio" name="tipo_invitados" id="tipo_invitados" value="1" autocomplete="off" checked> Automático
+  </label>
+  <label class="btn btn-danger btn-lg waves-effect  hoverable">
+    <input type="radio" name="tipo_invitados" id="tipo_invitados" value="0" autocomplete="off"> Manual
+  </label>
+ 
+</div>
+</div>
+  </div>
+  <br/>
+
+ <div class="md-form">
+           <i class="fa prefix"></i>
+            <input readonly id="graduandos" required value="{{graduates}}"  name="graduandos" type="text" class="form-control graduandos leer"  pattern="[0-9]{1,4}" title="Ingrese solo numeros">
+            <label for="graduandos" data-error="Incorrecto" data-success="Correcto">Cantidad de graduandos</label>
+        </div>
+<br/>
+        <div class="md-form error2_div">
+           <i class="fa prefix"></i>
+            <input readonly id="invitados" required value="{{event.invitados}}"  name="invitados" type="text" class="form-control validate invitados leer"  pattern="[0-9]{1,4}" title="Ingrese solo numeros">
+            <label for="invitados" data-error="Incorrecto" data-success="Correcto">Ingresa los invitados</label>
+        </div>
+
+
+<br/><br/>
+ <select class="cs-select cs-skin-boxes" id="espacio"  name="espacio" required>
+          {% for location in locations %}
+          {% if place.codigo ==  location.codigo %}
+            <option selected value="{{location.codigo}}-:-{{location.capacidad}}" data-class="location{{location.codigo}} cs-selected">{{location.nombre}} ({{location.capacidad}} Personas)</option>
+          {% else %}
+          <option value="{{location.codigo}}-:-{{location.capacidad}}" data-class="location{{location.codigo}}">{{location.nombre}} ({{location.capacidad}} Personas)</option>
+          {% endif %}
+          {% endfor %}				
+				</select>
+				
+				
+ 
+    </div>
+    </div>
+    
+<br/>
+    <div class="md-form form-group">
+        <div class="text-xs-center">
+        <center>
+    <button id="btn_modi" class="btn btn-danger btn-lg waves-effect hoverable"><i class='fa fa-pencil left'></i>Modificar</button>  
+    </center>
+
+    </div>
+ </div>
+ </form>
+
+  {% if message == "success" %}
+<div class='error alert bg-success waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-check left'></i>&nbsp;&nbsp;Exito!</strong> La informacion del evento ha sido modificada.</center></div>
+{% endif %}
+{% if message == "location" %}
+<div class='error alert bg-danger waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> La ubicacion no existe.</center></div>
+{% endif %}
+
+</div>
+
+ </div>
+{% if noMobile %}
+<div class="card col-md-12 col-lg-12 col-sm-12 mx-auto float-xs-none white z-depth-5 hoverable py-2 px-2">
+    <div class="card-block" >
+      
+ <div class="form-header dark-header z-depth-5 hoverable">
+            <h3><i class="fa fa-map-o"></i><strong> Mapa de Ubicacion</strong></h3>
+        </div>
+
+
+  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div id="map_canvas" class="wide z-depth-5 hoverable"></div>
+    </div>
+
+<br>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+    <center>
+      <a target="_blank" href="{{ path('eventFullscreen') }}" class="btn btn-unique btn-lg waves-light hoverable"><i class="fa fa-arrows-alt  left"></i> Pantalla Completa</a>
+    </center>
+    </div>
+    </div>
+</div>
+{% endif %}
+</div>
+{% include 'AdminBundle:Include:alertEvent.html.twig'  %}
+{% endblock %}   
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('js/admin/event/datetime-picker/moment-with-locales.js') }}" charset="utf-8"></script>
+  <script type="text/javascript" src="{{ asset('js/admin/event/datetime-picker/rome.standalone.js') }}" charset="utf-8"></script>
+ <script type="text/javascript" src="{{ asset('js/admin/event/select/selectFx.js') }}" charset="utf-8"></script>
+<script type="text/javascript" src="{{ asset('js/admin/event/datetime-picker/material-datetime-picker.js') }}" charset="utf-8"></script>
+<script type="text/javascript" src="{{ asset('js/admin/event/datetime-picker/picker.js') }}" charset="utf-8"></script>
+<script type="text/javascript" src="{{ asset('js/admin/event/form.js') }}" charset="utf-8"></script>
+<script type="text/javascript" src="{{ asset('js/admin/p5.min.js') }}" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+var  message="{{ message }}";
+
+if(message == "location"){
+$("#mensaje_location").modal('show');
+     }
+
+if(message == "success"){
+$("#mensaje_success").modal('show');
+     }
+
+     $("#map_canvas").bind("wheel mousewheel", function(e) {e.preventDefault()});
+     </script>
+
+     <script type="text/javascript" charset="utf-8">
+      var codigo = "{{ place.codigo }}";
+var nombre = "{{ place.nombre }}";
+var direccion = "{{ place.direccion }}";
+var capacidad = "{{ place.capacidad }} Personas";
+var zonas = "{{ place.zonas }}";
+var filas = "{{ place.filas }}";
+var columnas = "{{ place.columnas }}";
+
+var zona = new Array(3);
+zona[0] = "N";
+zona[1] = "S";
+zona[2] = "";
+
+ if(zonas == 3){
+               zona[2] = zona[1];
+               zona[1] = "C";
+                }
+var lado = 0;
+var xi = 0;
+var yi = 0;
+var zoom = 1;
+
+     function setup() {
+        var canvas_width = $("#map_canvas").width();
+  var canvas =createCanvas(canvas_width, windowHeight/2);
+  canvas.parent('map_canvas');
+  yi = height/10;
+  
+if(zonas == 1){
+   xi = width/2.5;
+ }else if(zonas == 2){
+   xi = width/3;
+ }else if(zonas == 3){
+   xi = width/5;
+ }else{
+     xi = width/8;
+  yi = height/2;
+ }
+ 
+smooth();
+}
+
+function draw() {
+
+if (mouseIsPressed) {
+  if (mouseButton == RIGHT){
+    reset();
+  }
+}
+
+  translate (xi, yi);
+  scale (zoom);
+
+  if(zonas < 1 || zonas > 3){
+    background("#6d4c41");
+    textSize(width/20);
+    fill("#ffffff");
+    text("Solo se permiten entre 1 y 3 zonas",0,0);
+  }else{
+  background("#142b3b");
+
+  lado = width/45;
+ stroke("#000000");
+
+ var espacioX = 0;
+ var contador = 0;
+ var posX = 0;
+ var posY = 0;
+
+  textSize(lado/3);
+text("Codigo: "+codigo,0,0);
+text("Nombre: "+nombre,0,10);
+text("Direccion: "+direccion,0,20);
+text("Capacidad: "+capacidad,0,30);
+ 
+  for(var k = 0; k < zonas; k++){
+      contador = 0;
+      espacioX = k*columnas*lado + k*lado;
+            for(var j = 0; j < filas; j++){
+                for(var i = 0; i < columnas; i++){
+                  posX =espacioX + i*lado;
+                  posY =40+j*lado*2;
+                rect(posX,posY,lado,lado);   
+                if(k == 0){
+                fill("#f44336");
+                }else if(k == 1){ 
+                    fill("#304ffe");
+                }else{
+                    fill("#009688");
+                }   
+                text(zona[k]+(++contador), posX+lado/4,posY+lado/1.6);
+                 fill("#ffffff");
+        }
+    }
+  }
+  }
+}
+
+function mouseDragged() {
+  xi= xi + (mouseX - pmouseX);
+  yi = yi + (mouseY - pmouseY);
+}
+
+ function keyTyped() {
+   if (keyCode == UP_ARROW) {
+    zoom += .03;
+  } else if (keyCode == DOWN_ARROW) {
+    zoom -= .03;
+  } else if (keyCode == ENTER) {
+    reset();
+  } 
+return false;
+}
+
+function touchMoved() {
+   xi= xi + (mouseX - pmouseX);
+  yi = yi + (mouseY - pmouseY);
+}
+
+function reset() {
+  zoom = 1;
+    xi = width/5;
+  yi = height/10;
+}
+
+function mouseWheel(event) {
+   if (event.delta < 0) {
+    zoom += .03;
+  } else {
+    zoom -= .03;
+  }
+}
+function windowResized() {
+  var canvas_width = $("#map_canvas").width();
+  resizeCanvas(canvas_width, windowHeight/2);
+}
+
+</script>
+{% endblock %}
+  

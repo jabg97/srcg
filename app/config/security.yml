@@ -1,0 +1,28 @@
+security:
+    encoders:
+        AppBundle\Entity\Usuarios:
+            algorithm: bcrypt
+            cost: 4
+    providers:
+        database_users:
+            entity: { class: AppBundle:Usuarios, property: codigo }
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            guard:
+                authenticators:
+                    - app.form_login_authenticator
+            logout:
+                path: /logout
+                target: /login
+
+    access_control:
+        - { path: ^/go, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/graduate, roles: ROLE_USER } 
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

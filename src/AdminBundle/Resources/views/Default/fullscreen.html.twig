@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Mapa Completo
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/user/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+  <div id="map_canvas" class="wide z-depth-5 hoverable"></div>
+{% endblock %}   
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/admin/p5.min.js') }}" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      var codigo = "{{ place.codigo }}";
+var nombre = "{{ place.nombre }}";
+var direccion = "{{ place.direccion }}";
+var capacidad = "{{ place.capacidad }} Personas";
+var zonas = "{{ place.zonas }}";
+var filas = "{{ place.filas }}";
+var columnas = "{{ place.columnas }}";
+
+var zona = new Array(3);
+zona[0] = "N";
+zona[1] = "S";
+zona[2] = "";
+
+ if(zonas == 3){
+               zona[2] = zona[1];
+               zona[1] = "C";
+                }
+var lado = 0;
+var xi = 0;
+var yi = 0;
+var zoom = 1;
+
+     function setup() {
+  var canvas =createCanvas(windowWidth, windowHeight);
+  canvas.parent('map_canvas');
+  yi = height/10;
+  
+if(zonas == 1){
+   xi = width/2.5;
+ }else if(zonas == 2){
+   xi = width/4;
+ }else if(zonas == 3){
+   xi = width/9;
+ }else{
+     xi = width/8;
+  yi = height/2;
+ }
+smooth();
+}
+ 
+function draw() {
+ translate (xi, yi);
+  scale (zoom);
+
+  if(zonas < 1 || zonas > 3){
+    background("#6d4c41");
+    textSize(width/20);
+    fill("#ffffff");
+    text("Solo se permiten entre 1 y 3 zonas",0,0);
+  }else{
+  background("#142b3b");
+
+  lado = width/32;
+ stroke("#000000");
+
+ var espacioX = 0;
+ var contador = 0;
+ var posX = 0;
+ var posY = 0;
+   textSize(lado/3);
+text("Codigo: "+codigo,0,0);
+text("Nombre: "+nombre,0,20);
+text("Direccion: "+direccion,0,40);
+text("Capacidad: "+capacidad,0,60);
+ 
+  for(var k = 0; k < zonas; k++){
+      contador = 0;
+      espacioX = k*columnas*lado + k*lado;
+            for(var j = 0; j < filas; j++){
+                for(var i = 0; i < columnas; i++){
+                  posX =espacioX + i*lado;
+                  posY =70+j*lado*2;
+                rect(posX,posY,lado,lado);   
+                if(k == 0){
+                fill("#f44336");
+                }else if(k == 1){ 
+                    fill("#304ffe");
+                }else{
+                    fill("#009688");
+                }   
+                text(zona[k]+(++contador), posX+lado/4,posY+lado/1.6);
+                 fill("#ffffff");
+        }
+    }
+  }
+  }
+}
+ 
+function mouseDragged() {
+  xi= xi + (mouseX - pmouseX);
+  yi = yi + (mouseY - pmouseY);
+}
+
+ function keyTyped() {
+   if (keyCode == UP_ARROW) {
+    zoom += .03;
+  } else if (keyCode == DOWN_ARROW) {
+    zoom -= .03;
+  } else if (keyCode == ENTER) {
+    reset();
+  } 
+return false;
+}
+
+function touchMoved() {
+   xi= xi + (mouseX - pmouseX);
+  yi = yi + (mouseY - pmouseY);
+}
+
+function reset() {
+  zoom = 1;
+    xi = width/5;
+  yi = height/10;
+}
+
+function mouseWheel(event) {
+   if (event.delta < 0) {
+    zoom += .03;
+  } else {
+    zoom -= .03;
+  }
+}
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+</script>
+{% endblock %}
+  

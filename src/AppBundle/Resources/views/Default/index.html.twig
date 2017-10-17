@@ -1,0 +1,270 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+SRCG
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css"  href="{{ asset('css/main/style.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+ <nav class="navbar hoverable  navbar-toggleable-md navbar-dark fixed-top scrolling-navbar">
+        <div class="container">          
+            <a class="navbar-brand" href="http://palmira.univalle.edu.co/">
+                <img src="{{ asset('img/general/logo.png') }}" class="img-fluid logouni" alt="logo"/>
+            </a>
+
+        </div>
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav1">
+            <ul class="navbar-nav mr-auto">
+ 
+            </ul>
+         
+            <ul class="navbar-nav nav-flex-left">
+              <li class="nav-item dropdown nombre btn-group">
+              {% if is_granted('ROLE_ADMIN') %}
+              <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-user-secret left"></i>&nbsp;Administrador</strong></a>
+                  {% else %}
+                    <a class="nav-link dropdown-toggle waves-effect" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><i class="fa fa-graduation-cap left"></i>&nbsp;{{ app.session.get('nombre') }} {{ app.session.get('apellido') }}</strong></a>
+                   {% endif %}
+                    <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+           {% if is_granted('ROLE_ADMIN') %}
+              <a class="dropdown-item waves-effect hoverable" href="{{ path('admin') }}"><i class="fa fa-home left"></i>&nbsp;Pagina Principal</a>
+                  {% else %} 
+                  <a class="dropdown-item waves-effect hoverable" href="{{ path('graduate') }}"><i class="fa fa-home left"></i>&nbsp;Pagina Principal</a>
+                       {% endif %}   
+                        <a class="dropdown-item waves-effect hoverable" href="{{ path('logout') }}"><i class="fa fa-sign-out left"></i>&nbsp;Cerrar Sesion</a>
+                    </div>
+                </li>
+                </ul>
+{% endif %}
+
+    </nav>
+
+    <div id="video-carousel" class="z-depth-5 carousel slide carousel-fade white-text" data-ride="carousel" data-interval="10000">
+    
+        <ol class="carousel-indicators">
+          {# <li data-target="#video-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#video-carousel" data-slide-to="1"></li>#} 
+            <li data-target="#video-carousel" data-slide-to="1" class="active">
+            <li data-target="#video-carousel" data-slide-to="2"></li>
+            <li data-target="#video-carousel" data-slide-to="3"></li>
+        </ol>
+
+
+  
+        <div class="carousel-inner" role="listbox">
+         {#
+            <div class="carousel-item active view">
+         
+                <div class="view hm-black-slight">
+
+             
+                    <video class="video-full" autoplay loop>
+                        <source src="{{ asset('video/grado.mp4') }}" type="video/mp4" />
+                    </video>
+                    <div class="full-bg-img  white-text mask pattern-1 waves-effect"></div>
+                </div>
+
+          
+                <div class="carousel-caption flex-center fondo-carousel animated fadeInDown">                  
+                        <ul>
+                            <li>
+                               <h3 class="h3-responsive">Ceremonia</h3>
+                            <li>
+                                <p>La ceremonia solemne de grado se realizará el día
+                                 {{ fecha_evento }} en {{ lugar }} ({{ direccion }}). La ceremonia
+                                   tendrá una duración de 2 horas aproximadamente 
+                                   e iniciará a la {{ hora_evento }}.</p>
+                            </li>
+                        </ul>
+                </div>
+   
+            </div>
+     
+
+      <div class="carousel-item view hm-black-light">
+      #}
+             <div class="carousel-item view hm-black-light active">   
+
+
+<img src="{{ asset('img/main/carousel/1.jpg') }}" class="img-fluid fuentepdf" alt="carousel1"/>
+<div class="full-bg-img white-text mask pattern-1 waves-effect"></div>
+    <div class="carousel-caption flex-center fondo-carousel animated fadeInDown">                  
+                        <ul>
+                            <li>
+                               <h3 class="h3-responsive">Ceremonia</h3>
+                            <li>
+                                <p>La ceremonia solemne de grado se realizará el día
+                                 {{ fecha_evento }} en {{ lugar }} ({{ direccion }}). La ceremonia
+                                   tendrá una duración de 2 horas aproximadamente 
+                                   e iniciará a la {{ hora_evento }}.</p>
+                            </li>
+                        </ul>
+                </div>
+                
+              
+                
+            </div>
+          
+            <div class="carousel-item view hm-black-light">
+                
+   <img src="{{ asset('img/main/carousel/2.jpg') }}" class="img-fluid fuentepdf" alt="carousel2"/>
+          <div class="full-bg-img  white-text mask pattern-1 waves-effect"></div>
+    <div class="carousel-caption flex-center fondo-carousel  animated fadeInDown">                  
+                        <ul>
+                            <li>
+                               <h3 class="h3-responsive">Ceremonia</h3>
+                            <li>
+                                <p>La ceremonia solemne de grado se realizará el día
+                                 {{ fecha_evento }} en {{ lugar }} ({{ direccion }}). La ceremonia
+                                   tendrá una duración de 2 horas aproximadamente 
+                                   e iniciará a la {{ hora_evento }}.</p>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+           
+            <div class="carousel-item view hm-black-light">
+                
+                    <img src="{{ asset('img/main/carousel/3.jpg') }}" class="img-fluid fuentepdf" alt="carousel3"/>
+
+                <div class="full-bg-img  white-text mask pattern-1 waves-effect"></div>
+<div class="carousel-caption animated flex-center fondo-carousel fadeInDown">                  
+                        <ul>
+                            <li>
+                               <h3 class="h3-responsive">Ceremonia</h3>
+                            <li>
+                                <p>La ceremonia solemne de grado se realizará el día
+                                 {{ fecha_evento }} en {{ lugar }} ({{ direccion }}). La ceremonia
+                                   tendrá una duración de 2 horas aproximadamente 
+                                   e iniciará a la {{ hora_evento }}.</p>
+                            </li>
+                        </ul>
+                </div>
+             
+                
+            </div>
+          
+        </div>
+       
+        <a class="carousel-control-prev" href="#video-carousel" role="button" data-slide="prev">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#video-carousel" role="button" data-slide="next">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            <span class="sr-only">Next</span>
+        </a>
+  
+    </div>
+
+    <br/><br/>
+
+ 
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-5">
+             
+                <div class="card wow animated zoomIn z-depth-4 hoverable" data-wow-delay="0.2s">
+
+              <a target="_blank" href="{{ path('login') }}">
+                    <div class="view card-photo overlay hm-zoom hm-black-light">
+                        <img src="{{ asset('img/main/login.jpg') }}" class="img-fluid lostimg" alt="login"/>               
+                            <div class="mask waves-effect"></div>
+                    </div>
+                   </a>
+                    <div class="card-block">
+                      
+                        <h4 class="card-title">Iniciar sesión</h4>
+                       
+                        <p class="card-text">Inicia sesión para registrar tus invitados.</p>
+                        <a target="_blank" href="{{ path('login') }}" class="btn btn-danger btn-lg waves-effect hoverable"> <i class="fa fa-graduation-cap left"></i>Iniciar sesión</a>
+                    </div>
+                  
+
+                </div>
+              
+            </div>
+   
+            <div class="col-lg-4 col-md-4 col-sm-2"></div>
+            <div class="col-lg-4 col-md-4 col-sm-5">
+            
+                <div class="card wow animated zoomIn z-depth-4 hoverable" data-wow-delay="0.2s">
+
+               <a target="_blank" href="{{ asset('documents/map/'~ codigo ~'.pdf') }}">
+                    <div class="view card-photo overlay hm-zoom hm-black-light">
+                        <img src="{{ asset('img/main/map/'~ codigo ~'.jpg') }}" class="img-fluid lostimg" alt="download"/>                   
+                            <div class="mask waves-effect"></div>
+                    </div></a>
+                  
+                    <div class="card-block">
+                  
+                        <h4 class="card-title">Mapa de la ubicación</h4>
+                      
+                        <p class="card-text">Descargar mapa del lugar de la ceremonia.</p>
+                        <a target="_blank" href="{{ asset('documents/map/'~ codigo ~'.pdf') }}" class="btn btn-danger btn-lg waves-effect hoverable"> <i class="fa fa-map left"></i>Descargar mapa</a>
+                    </div>
+                  
+                </div>
+              
+            </div>
+            
+        </div>
+    </div> 
+<br/>
+<footer class="page-footer center-on-small-only z-depth-5">
+
+   
+    <div class="container-fluid">
+        <div class="row wow slideInLeft animated" data-wow-delay="0.2s">
+
+         <div class="col-md-2"></div>
+            <div class="col-md-3">
+            <img src="{{ asset('img/general/logo_footer.png') }}" class="img-fluid footer-logo hoverable lostimg" alt="logo_footer"/>
+                <h5 class="title">SRCG</h5>
+                <p>Sistema Registro Candidatos de Grado.</p>
+            </div>
+
+            <div class="col-md-3">
+                <p>UNIVERSIDAD DEL VALLE</p>
+                <p>Palmira-Colombia</p>
+            </div>
+         
+            <div class="col-md-4">
+                <div>
+                    <p><i class="fa fa-map-marker fa-2x"></i>&nbsp;&nbsp; Carrera 31 Av. La Carbonera</p>
+                </div>
+
+                <div>
+                    
+                    <p><i class="fa fa-phone fa-2x"></i>&nbsp;&nbsp; +57 2716949<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +57 2728755</p>
+                </div>
+
+            </div>
+          
+        </div>
+    </div>
+    
+    <div class="footer-copyright z-depth-5">
+        <div class="container-fluid slideInDown animated" data-wow-delay="0.2s">
+           <p>Copyright {{ 'now'|date('Y') }} &copy; <a href="http://palmira.univalle.edu.co/" class="footer_link">Universidad del Valle</a>  - All Rigths Reserved / Desarrollado por Jaiver Balanta y Antony Manyoma</p>
+        </div>
+    </div>
+  
+</footer>
+
+
+{% endblock %}
+
+
