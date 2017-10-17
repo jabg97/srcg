@@ -7579,6 +7579,7 @@ button:focus {
 
 .btn-unique {
     color: #ffffff !important;
+    background-color: #142b3b;
     background: #142b3b !important;
     background: -moz-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
     background: -webkit-gradient(left top, left bottom, color-stop(0%, #142b3b), color-stop(54%, #142b3b), color-stop(100%, #20455e)) !important;
@@ -7591,6 +7592,7 @@ button:focus {
 
 .btn-unique.active {
     color: #ffffff !important;
+    background-color: #000000;
     background: #000000 !important;
     background: -moz-linear-gradient(top, #000000 0%, #000000 54%, #142b3b 100%) !important;
     background: -webkit-gradient(left top, left bottom, color-stop(0%, #000000), color-stop(54%, #000000), color-stop(100%, #142b3b)) !important;
@@ -7822,6 +7824,7 @@ button:focus {
 }
 
 input[type=text],
+input[type=file],
 input[type=password],
 input[type=email],
 input[type=url],
@@ -7851,6 +7854,9 @@ textarea.md-textarea {
 input[type=text]:disabled,
 input[type=text]:disabled,
 input[type=text][readonly="readonly"],
+input[type=file]:disabled,
+input[type=file]:disabled,
+input[type=file][readonly="readonly"],
 input[type=password]:disabled,
 input[type=password]:disabled,
 input[type=password][readonly="readonly"],
@@ -7891,6 +7897,8 @@ textarea.md-textarea[readonly="readonly"] {
 
 input[type=text]:disabled+label,
 input[type=text][readonly="readonly"]+label,
+input[type=file]:disabled+label,
+input[type=file][readonly="readonly"]+label,
 input[type=password]:disabled+label,
 input[type=password][readonly="readonly"]+label,
 input[type=email]:disabled+label,
@@ -7918,6 +7926,7 @@ textarea.md-textarea[readonly="readonly"]+label {
 }
 
 input[type=text]:focus:not([readonly]),
+input[type=file]:focus:not([readonly]),
 input[type=password]:focus:not([readonly]),
 input[type=email]:focus:not([readonly]),
 input[type=url]:focus:not([readonly]),
@@ -7934,6 +7943,7 @@ textarea.md-textarea:focus:not([readonly]) {
 }
 
 input[type=text]:focus:not([readonly])+label,
+input[type=file]:focus:not([readonly])+label,
 input[type=password]:focus:not([readonly])+label,
 input[type=email]:focus:not([readonly])+label,
 input[type=url]:focus:not([readonly])+label,
@@ -7950,6 +7960,8 @@ textarea.md-textarea:focus:not([readonly])+label {
 
 input[type=text].valid,
 input[type=text]:focus.valid,
+input[type=file].valid,
+input[type=file]:focus.valid,
 input[type=password].valid,
 input[type=password]:focus.valid,
 input[type=email].valid,
@@ -7978,6 +7990,8 @@ textarea.md-textarea:focus.valid {
 
 input[type=text].valid+label:after,
 input[type=text]:focus.valid+label:after,
+input[type=file].valid+label:after,
+input[type=file]:focus.valid+label:after,
 input[type=password].valid+label:after,
 input[type=password]:focus.valid+label:after,
 input[type=email].valid+label:after,
@@ -8007,6 +8021,8 @@ textarea.md-textarea:focus.valid+label:after {
 
 input[type=text].invalid,
 input[type=text]:focus.invalid,
+input[type=file].invalid,
+input[type=file]:focus.invalid,
 input[type=password].invalid,
 input[type=password]:focus.invalid,
 input[type=email].invalid,
@@ -8035,6 +8051,8 @@ textarea.md-textarea:focus.invalid {
 
 input[type=text].invalid+label:after,
 input[type=text]:focus.invalid+label:after,
+input[type=file].invalid+label:after,
+input[type=file]:focus.invalid+label:after,
 input[type=password].invalid+label:after,
 input[type=password]:focus.invalid+label:after,
 input[type=email].invalid+label:after,
@@ -8063,6 +8081,7 @@ textarea.md-textarea:focus.invalid+label:after {
 }
 
 input[type=text]+label:after,
+input[type=file]+label:after,
 input[type=password]+label:after,
 input[type=email]+label:after,
 input[type=url]+label:after,
@@ -8083,6 +8102,7 @@ textarea.md-textarea+label:after {
 }
 
 input[type=text].input-alternate,
+input[type=file].input-alternate,
 input[type=password].input-alternate,
 input[type=email].input-alternate,
 input[type=url].input-alternate,
@@ -8103,6 +8123,8 @@ textarea.md-textarea.input-alternate {
 
 input[type=text].input-alternate:hover,
 input[type=text].input-alternate:focus,
+input[type=file].input-alternate:hover,
+input[type=file].input-alternate:focus,
 input[type=password].input-alternate:hover,
 input[type=password].input-alternate:focus,
 input[type=email].input-alternate:hover,
@@ -9980,10 +10002,10 @@ div.wide {
 
 .custom-select option {
     margin: 40px;
-    background: rgba(209, 28, 35, 1);
+    background: rgba(20, 43, 59, 1);
     color: #fff;
     font-weight: bolder;
-    text-shadow: 0 1px 0 rgba(209, 28, 35, 1);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .toggle-form {
@@ -10076,38 +10098,24 @@ div.wide {
 }
 
 .table-header {
-    color: #fff;
-    text-decoration: none;
-    transition: .3s;
+    color: #fff !important;
+    text-decoration: none !important;
+    transition: .3s !important;
 }
 
 .table-header:hover,
 .table-header:active,
 .table-header:focus {
-    color: #fff;
-    padding-left: 0.3rem;
+    color: #fff !important;
+    padding-left: 0.3rem !important;
 }
 
-.upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-}
-
-.btnup {
-    border: 2px solid gray;
-    color: gray;
-    background-color: white;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.upload-btn-wrapper input[type=file] {
-    font-size: 100px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
+input[type=file] {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 0.8rem !important;
+    cursor: pointer;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    transition: 0.2px !important;
 }

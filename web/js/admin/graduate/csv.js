@@ -24,7 +24,7 @@
                 var fileExt = fileName.substring(fileName.lastIndexOf('.'));
 
                 if (fileExt != ".csv" && fileExt != ".CSV") {
-                    $("#csv_div").focus().after(" <div class='error alert bg-danger text-white z-depth-4 hoverable imen'><center><strong> <i class='fa fa-exclamation-circle left'></i>&nbsp;&nbsp;Error!</strong> Archivo no válido.</center></div>");
+                    $("#csv_div").focus().after(" <div class='error alert bg-danger text-white z-depth-4 hoverable imen'><center><strong> <i class='fa fa-exclamation-circle fa-1x left'></i>&nbsp;&nbsp;Error!</strong> Archivo no válido.</center></div>");
                 } else {
                     $("#mensaje_tutorial").modal('show');
                 }

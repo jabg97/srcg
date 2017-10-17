@@ -96,7 +96,10 @@
 <br>
 
             <div id="map_div"  class="map_div">
-            {{ form_label(form.map, 'Seleccione un mapa PDF') }}
+            
+             {{ form_label(form.map, 'Seleccione un mapa PDF',
+         {'label_attr': {'data-error': 'Incorrecto','data-success': 'Correcto'}
+         }) }}
         {{ form_widget(form.map,
         { 'attr': {'class': 'form-control validate map','accept': 'application/pdf,application/x-pdf','required': 'required'}}) }}
         
@@ -105,7 +108,9 @@
 <br>
 
  <div id="image_div"  class="image_div">
-    {{ form_label(form.image, 'Seleccione una imagen JPG o JPEG (600 x 400)px') }}
+      {{ form_label(form.image, 'Seleccione una imagen JPG o JPEG (600 x 400)px',
+         {'label_attr': {'data-error': 'Incorrecto','data-success': 'Correcto'}
+         }) }}
         {{ form_widget(form.image,
         { 'attr': {'class': 'form-control validate image','accept': 'image/jpeg,image/pjpeg','required': 'required'}}) }}
      

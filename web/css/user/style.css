@@ -278,6 +278,7 @@
    
    .dark-header {
        color: #ffffff !important;
+       background-color: #142b3b !important;
        background: #142b3b !important;
        background: -moz-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
        background: -webkit-gradient(left top, left bottom, color-stop(0%, #142b3b), color-stop(54%, #142b3b), color-stop(100%, #20455e)) !important;
@@ -295,6 +296,14 @@
    .img-thumbnail-dark {
        padding: 0.5rem;
        background-color: #142b3b;
+       background: #142b3b !important;
+       background: -moz-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
+       background: -webkit-gradient(left top, left bottom, color-stop(0%, #142b3b), color-stop(54%, #142b3b), color-stop(100%, #20455e)) !important;
+       background: -webkit-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
+       background: -o-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
+       background: -ms-linear-gradient(top, #142b3b 0%, #142b3b 54%, #20455e 100%);
+       background: linear-gradient(to bottom, #142b3b 0%, #142b3b 54%, #20455e 100%) !important;
+       filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#142b3b', endColorstr='#20455e', GradientType=0);
        border: 1px solid #142b3b;
        color: #ffffff !important;
        border-radius: 0.5rem;

@@ -23,22 +23,22 @@ class Espacios
 
      * @ORM\Column(name="nombre", type="string", length=50, nullable=false , unique=true)
 
-* @Assert\NotBlank(groups={"edit"},
+* @Assert\NotBlank(
      *     message="El nombre no puede estar vacio."
      * )
 
-     * @Assert\NotNull(groups={"edit"},
+     * @Assert\NotNull(
      *     message="El nombre no puede estar vacio."
      * )
 
-* @Assert\Length(groups={"edit"},
+* @Assert\Length(
      *      min = 1,
      *      max = 50,
      *      minMessage = "El nombre '{{ value }}' debe tener minimo {{ limit }} caracteres",
      *      maxMessage = "El nombre '{{ value }}' debe tener maximoo {{ limit }} caracteres"
      * )
 
-* @Assert\Regex(groups={"edit"},
+* @Assert\Regex(
      *     pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/",
      *     match=true,
      *     message="El nombre '{{ value }}' solo debe tener letras "
@@ -52,15 +52,15 @@ class Espacios
 
      * @ORM\Column(name="direccion", type="string", length=50, nullable=false , unique=true)
 
-* @Assert\NotBlank(groups={"edit"},
+* @Assert\NotBlank(
      *     message="La direccion no puede estar vacia."
      * )
 
-     * @Assert\NotNull(groups={"edit"},
+     * @Assert\NotNull(
      *     message="La direccion no puede estar vacia."
      * )
 
-* @Assert\Length(groups={"edit"},
+* @Assert\Length(
      *      min = 1,
      *      max = 50,
      *      minMessage = "La direccion '{{ value }}' debe tener minimo {{ limit }} caracteres",
@@ -74,29 +74,29 @@ class Espacios
      * @var integer
      *
      * @ORM\Column(name="capacidad", type="smallint", nullable=false , options={"unsigned"=true})
-      * @Assert\NotBlank(groups={"edit"},
+      * @Assert\NotBlank(
      *     message="La capacidad del establecimiento no puede estar vacia."
      * )
 
-     * @Assert\NotNull(groups={"edit"},
+     * @Assert\NotNull(
      *     message="La capacidad del establecimiento no puede estar vacia."
      * )
 
-* @Assert\Length(groups={"edit"},
+* @Assert\Length(
      *      min = 1,
      *      max = 6,
      *      minMessage = "La capacidad '{{ value }}' debe tener minimo {{ limit }} digitos",
      *      maxMessage = "La capacidad '{{ value }}' debe tener maximo {{ limit }} digitos"
     * )
 
-* @Assert\Range(groups={"edit"},
+* @Assert\Range(
      *      min = 1,
      *      max = 999999,
      *      minMessage = "La capacidad debe ser minimo {{ limit }} ",
      *      maxMessage = "La capacidad debe ser aximo {{ limit }} "
     * )
 
-      * @Assert\Regex(groups={"edit"},
+      * @Assert\Regex(
      *     pattern="/^[0-9]+$/",
      *     match=true,
      *     message="La capacidad del establecimiento '{{ value }}' solo debe tener numeros"
@@ -109,28 +109,28 @@ class Espacios
      *
      * @ORM\Column(name="zonas", type="smallint", nullable=false , options={"unsigned"=true})
     
-     * @Assert\NotBlank(groups={"edit"},
+     * @Assert\NotBlank(
      *     message="La cantidad de zonas no puede estar vacia."
      * )
 
-     * @Assert\NotNull(groups={"edit"},
+     * @Assert\NotNull(
      *     message="La cantidad de zonas no puede estar vacia."
      * )
 
-* @Assert\Range(groups={"edit"},
+* @Assert\Range(
      *      min = 1,
      *      max = 3,
      *      minMessage = "El establecimiento debe tener minimo {{ limit }} zona",
      *      maxMessage = "El establecimiento debe tener maximo {{ limit }} zonas"
     * )
 
-    * @Assert\Length(groups={"edit"},
+    * @Assert\Length(
      *      min = 1,
      *      max = 1,
      *      exactMessage = "La cantidad de zonas '{{ value }}' debe tener exactamente {{ limit }} digitos"
      * )
 
-      * @Assert\Regex(groups={"edit"},
+      * @Assert\Regex(
      *     pattern="/^[0-9]+$/",
      *     match=true,
      *     message="La cantidad de zonas '{{ value }}' solo debe tener numeros"
@@ -143,29 +143,29 @@ class Espacios
      *
      * @ORM\Column(name="filas", type="smallint", nullable=false , options={"unsigned"=true})
      
-     * @Assert\NotBlank(groups={"edit"},
+     * @Assert\NotBlank(
      *     message="La cantidad de filas no puede estar vacia."
      * )
 
-     * @Assert\NotNull(groups={"edit"},
+     * @Assert\NotNull(
      *     message="La cantidad de filas no puede estar vacia."
      * )
 
-* @Assert\Length(groups={"edit"},
+* @Assert\Length(
      *      min = 1,
      *      max = 3,
      *      minMessage = "La cantidad de filas '{{ value }}' debe tener minimo {{ limit }} digitos",
      *      maxMessage = "La cantidad de filas '{{ value }}' debe tener maximo {{ limit }} digitos"
     * )
 
-   * @Assert\Range(groups={"edit"},
+   * @Assert\Range(
      *      min = 1,
      *      max = 999,
      *      minMessage = "La cantidad de filas debe ser minimo {{ limit }} ",
      *      maxMessage = "La cantidad de filas debe ser maximo {{ limit }} "
     * )
 
-      * @Assert\Regex(groups={"edit"},
+      * @Assert\Regex(
      *     pattern="/^[0-9]+$/",
      *     match=true,
      *     message="La cantidad de filas '{{ value }}' solo debe tener numeros"
@@ -177,29 +177,29 @@ class Espacios
      * @var integer
      *
      * @ORM\Column(name="columnas", type="smallint", nullable=false , options={"unsigned"=true})
-      * @Assert\NotBlank(groups={"edit"},
+      * @Assert\NotBlank(
      *     message="La cantidad de columnas no puede estar vacia."
      * )
 
-     * @Assert\NotNull(groups={"edit"},
+     * @Assert\NotNull(
      *     message="La cantidad de columnas no puede estar vacia."
      * )
 
-* @Assert\Length(groups={"edit"},
+* @Assert\Length(
      *      min = 1,
      *      max = 3,
      *      minMessage = "La cantidad de columnas '{{ value }}' debe tener minimo {{ limit }} digitos",
      *      maxMessage = "La cantidad de columnas '{{ value }}' debe tener maximo {{ limit }} digitos"
     * )
 
-  * @Assert\Range(groups={"edit"},
+  * @Assert\Range(
      *      min = 1,
      *      max = 999,
      *      minMessage = "La cantidad de columnas debe ser minimo {{ limit }} ",
      *      maxMessage = "La cantidad de columnas debe ser maximo {{ limit }} "
     * )
 
-      * @Assert\Regex(groups={"edit"},
+      * @Assert\Regex(
      *     pattern="/^[0-9]+$/",
      *     match=true,
      *     message="La cantidad de columnas '{{ value }}' solo debe tener numeros"
@@ -213,29 +213,29 @@ class Espacios
      *
      * @ORM\Column(name="codigo", type="smallint", options={"unsigned"=true})
      * @ORM\Id
-      * @Assert\NotBlank(groups={"edit"},
+      * @Assert\NotBlank(
      *     message="El codigo del establecimiento no puede estar vacio."
      * )
 
-     * @Assert\NotNull(groups={"edit"},
+     * @Assert\NotNull(
      *     message="El codigo del establecimiento no puede estar vacio."
      * )
 
-* @Assert\Length(groups={"edit"},
+* @Assert\Length(
      *      min = 1,
      *      max = 2,
      *      minMessage = "El codigo del establecimiento '{{ value }}' debe tener minimo {{ limit }} digitos",
      *      maxMessage = "El codigo del establecimiento '{{ value }}' debe tener maximo {{ limit }} digitos"
     * )
 
-    * @Assert\Range(groups={"edit"},
+    * @Assert\Range(
      *      min = 1,
      *      max = 99,
      *      minMessage = "El codigo del establecimiento  debe ser minimo {{ limit }} ",
      *      maxMessage = "El codigo del establecimiento  debe ser maximo {{ limit }} "
     * )
 
-      * @Assert\Regex(groups={"edit"},
+      * @Assert\Regex(
      *     pattern="/^[0-9]+$/",
      *     match=true,
      *     message="El codigo del establecimiento '{{ value }}' solo debe tener numeros"
@@ -244,7 +244,7 @@ class Espacios
     private $codigo;
 
       /**
-     * @Assert\File(groups={"edit"},
+     * @Assert\File(
      *     binaryFormat = "false",
      *     maxSize = "512k",
      *     mimeTypes = {"application/pdf", "application/x-pdf"},
@@ -255,7 +255,7 @@ class Espacios
      protected $map;
 
 /**
-     * @Assert\Image(groups={"edit"},
+     * @Assert\Image(
      *     binaryFormat = "false",
      *     maxSize = "512k",
      *     minWidth = 600,
