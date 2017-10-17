@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: srcg
+    database_user: root
+    database_password: null
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: horariotps@gmail.com
+    mailer_password: horariotps39
+    secret: bcb3006ae1a5502f729c4d57becb17aa894be75b
