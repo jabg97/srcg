@@ -45,7 +45,7 @@ Pagina principal
     <div class="graduate-header" ></div>
 
     <div class="container free-bird">
-
+{% if size >  0 %}
 <form class="form-signin" method="POST" action="{{ path('graduateRegisterGuest') }}">
 
 <div class="row">
@@ -53,10 +53,11 @@ Pagina principal
 </div>
 
         <div class="row">
-
+   
 {% for i in range(0, size-1) %}
 {% include 'GraduateBundle:Include:guest.html.twig'  %} 
 {% endfor %}
+
 </div>
 
 {% if  mostrar %}
@@ -129,10 +130,12 @@ Pagina principal
 
 </form> 
 
-
+{% include 'GraduateBundle:Include:alert.html.twig' %}
+{% else %}
+no se puede registrar invitados
+{% endif %}
 
 </div>
-{% include 'GraduateBundle:Include:alert.html.twig' %}
 {% endblock %}
 
 {% block javascripts %}

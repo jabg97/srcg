@@ -18,7 +18,7 @@ class SecurityController extends Controller
 {
 
 /**
-    * @Route("/search", name="searchGuest")
+    * @Route("/search", name="searchGraduate")
      * @Method({"POST"})
      */
      public function searchAction(Request $request)
@@ -32,13 +32,37 @@ class SecurityController extends Controller
                     return new Response(0); 
                 }
 
-                $list = $service->listGuest($data);
+                $list = $service->searchGraduate($data);
                 if(count($list) > 0){
                     $serializer = $this->get('jms_serializer');
                     return new Response($serializer->serialize($list,'json'));
                 }          
                 return new Response(1);  
     }
+
+    /**
+    * @Route("/sync", name="syncData")
+     * @Method({"POST"})
+     */
+    public function syncAction(Request $request)
+    {
+ 
+       $password =  trim($request->request->get('password'));
+
+       $service = $this->get('srcg.get_event_info');
+       
+               if ($password != $service->getPassword()) {
+                   return new Response(0); 
+               }
+
+               $list = $service->syncData();
+               if(count($list) > 0){
+                   $serializer = $this->get('jms_serializer');
+                   return new Response($serializer->serialize($list,'json'));
+               }          
+               return new Response(1);  
+   }
+
 
 /**
     * @Route("/validate", name="validateGuest")

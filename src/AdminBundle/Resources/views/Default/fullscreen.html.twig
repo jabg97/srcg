@@ -22,6 +22,7 @@ var capacidad = "{{ place.capacidad }} Personas";
 var zonas = "{{ place.zonas }}";
 var filas = "{{ place.filas }}";
 var columnas = "{{ place.columnas }}";
+var noMobile = "{{ noMobile }}";
 
 var zona = new Array(3);
 zona[0] = "N";
@@ -58,12 +59,12 @@ smooth();
 function draw() {
  translate (xi, yi);
   scale (zoom);
-
+if(noMobile){
   if(zonas < 1 || zonas > 3){
     background("#6d4c41");
     textSize(width/20);
     fill("#ffffff");
-    text("Solo se permiten entre 1 y 3 zonas",0,0);
+    text("Solo se permiten entre 1 y 3 zonas",0,height/200);
   }else{
   background("#142b3b");
 
@@ -101,22 +102,17 @@ text("Capacidad: "+capacidad,0,60);
     }
   }
   }
+  }else{
+    background("#6d4c41");
+    textSize(width/30);
+    fill("#ffffff");
+    text("El Mapa no esta disponible para dispositivos moviles",0,height/200);
+  }
 }
  
 function mouseDragged() {
   xi= xi + (mouseX - pmouseX);
   yi = yi + (mouseY - pmouseY);
-}
-
- function keyTyped() {
-   if (keyCode == UP_ARROW) {
-    zoom += .03;
-  } else if (keyCode == DOWN_ARROW) {
-    zoom -= .03;
-  } else if (keyCode == ENTER) {
-    reset();
-  } 
-return false;
 }
 
 function touchMoved() {

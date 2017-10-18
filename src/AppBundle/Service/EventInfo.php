@@ -97,7 +97,34 @@ return $repository->find(1)->getPassword();
 return $repository->find($documento); 
     }
 
-    public function listGuest($nombre)
+    public function syncData()
+    {     
+  $qb = $this->em->createQueryBuilder();
+  $qb->select('graduate.codigo','graduate.nombre','graduate.apellido');
+  $qb->from('AppBundle:Graduandos','graduate');
+  $qb->orderBy('graduate.apellido', 'ASC');
+  $graduates = $qb->getQuery()->getResult();
+  $info = array();
+
+  foreach ($graduates as $graduate){ 
+    $qb = $this->em->createQueryBuilder();
+    $qb->select('guest.documento','guest.nombre','guest.apellido','guest.asistencia');
+    $qb->from('AppBundle:Invitados','guest');
+    $qb->where('guest.graduando = :codigo');
+    $qb->setParameters(array('codigo' => $graduate['codigo']));
+    $qb->orderBy('guest.apellido', 'ASC');
+    $guests = $qb->getQuery()->getResult();
+
+          if ($guests!=null) {
+          $info[] = array($graduate['nombre'].' '.$graduate['apellido'],
+          $guests
+        );
+        }   
+}
+return $info; 
+    }
+
+    public function searchGraduate($nombre)
     {  
     $query = $this->em->getRepository("AppBundle:Graduandos")->createQueryBuilder('graduate')
     ->where('graduate.nombre LIKE :nombre')
