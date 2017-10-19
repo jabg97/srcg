@@ -114,4 +114,4 @@ endroid_qr_code:
     label_margin: { b: 20 }
     logo_path: '%kernel.root_dir%/../web/img/general/qr_logo.png'
     logo_width: 80
-    validate_result: true # checks if the result is readable
+    validate_result: false # checks if the result is readable

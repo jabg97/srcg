@@ -42,11 +42,8 @@ $guest = new Guest($this->get('doctrine')->getManager());
 
 
 foreach ( $list as $invitado) {
-$VCard  = "BEGIN:VCARD\r\n";
-    $VCard .= "VERSION:3.0\r\n";
-    $VCard .= "TITLE:".$invitado->getDocumento()."\r\n";
-    $VCard .= "FN:".$invitado->getNombre()." ".$invitado->getApellido()."\r\n";
-    $VCard .= "END:VCARD\r\n"; 
+$VCard  = $invitado->getDocumento()." -:- "
+.$invitado->getNombre()." ".$invitado->getApellido();
      $info[] = array($VCard,array($invitado->getNombre(),$invitado->getApellido())) ;
 
 }
