@@ -100,8 +100,9 @@ return $repository->find($documento);
     public function syncData()
     {     
   $qb = $this->em->createQueryBuilder();
-  $qb->select('graduate.codigo','graduate.nombre','graduate.apellido');
+  $qb->select('graduate.codigo','graduate.nombre','graduate.apellido','career.nombre as programa');
   $qb->from('AppBundle:Graduandos','graduate');
+  $qb->innerJoin('AppBundle:Programas', 'career', 'WITH', 'graduate.programa = career.codigo'); 
   $qb->orderBy('graduate.apellido', 'ASC');
   $graduates = $qb->getQuery()->getResult();
   $info = array();
@@ -116,9 +117,7 @@ return $repository->find($documento);
     $guests = $qb->getQuery()->getResult();
 
           if ($guests!=null) {
-          $info[] = array($graduate['nombre'].' '.$graduate['apellido'],
-          $guests
-        );
+          $info[] = array($graduate,$guests);
         }   
 }
 return $info; 
