@@ -180,16 +180,6 @@ $array2 = $validator->validate($user);
 
 }
 
-public function import($graduates,$users)
-    {
-        for($i=0; $i < count($users); $i++) { 
-      $this->em->persist($graduates[$i]);
-      $this->em->persist($users[$i]);
-    $this->em->flush();
-        }
-
-}
-
 public function insert($graduate,$user)
     {
       $this->em->persist($graduate);

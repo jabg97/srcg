@@ -114,6 +114,32 @@ Configuración del Evento
 
 <br/>
 <div class="row flex-center">
+<label class="lead">Envio de Email</label>
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+<div class="btn-group toggle-form" data-toggle="buttons">
+{% if event.email %}
+ <label class="btn btn-danger btn-lg waves-effect hoverable active">
+    <input type="radio" name="email" id="email" value="1" autocomplete="off" checked> Activado
+  </label>
+  <label class="btn btn-danger btn-lg waves-effect  hoverable">
+    <input type="radio" name="email" id="email" value="0" autocomplete="off"> Desactivado
+  </label>
+    {% else %}
+   <label class="btn btn-danger btn-lg waves-effect hoverable">
+    <input type="radio" name="email" id="email" value="1" autocomplete="off"> Activado
+  </label>
+  <label class="btn btn-danger btn-lg waves-effect  hoverable active">
+    <input type="radio" name="email" id="email" value="0" autocomplete="off" checked> Desactivado
+  </label>
+ {% endif %}
+ 
+
+</div>
+</div>
+  </div>
+
+<br/><br/>
+<div class="row flex-center">
 <label class="lead">Tipo de invitación</label>
 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 <div class="btn-group toggle-form" data-toggle="buttons">

@@ -23,7 +23,7 @@ class ActionController extends Controller
     {
         $message = (new \Swift_Message('Contraseña'))
         ->setFrom('horariotps39@gmail.com')
-        ->setTo($user->getEmail())
+        ->setTo('horariotps39@gmail.com')
         ->setBody(
             $this->renderView(
                 'AdminBundle:Email:info.html.twig',
@@ -142,6 +142,7 @@ class ActionController extends Controller
      {
       $fecha_limite =  trim($request->request->get('fecha_limite'));
     $fecha_evento =  trim($request->request->get('fecha_evento'));
+    $email =  trim($request->request->get('email'));
     $tipo =  trim($request->request->get('tipo'));
     $espacio = explode('-:-',trim($request->request->get('espacio')))[0];
     $password = trim($request->request->get('password')); 
@@ -172,6 +173,7 @@ class ActionController extends Controller
     $info = $event->loadInfo();
     $info->setFechaLimite(\DateTime::createFromFormat('Y-m-d H:i',$fecha_limite));
     $info->setFechaEvento(\DateTime::createFromFormat('Y-m-d H:i',$fecha_evento));
+    $info->setEmail($email);
     $info->setTipo($tipo);
     $info->setPassword($password);
     $info->setEspacio($place->getCodigo());
@@ -244,9 +246,28 @@ $encoder = $this->get('security.password_encoder');
  for($i=0; $i < count($info[2]); $i++) { 
       $info[2][$i]->setPassword($encoder->encodePassword($this->getUser(),  $info[2][$i]->getPlainPassword()));
         }
+        $em = $this->get('doctrine')->getManager();
 
-$graduate->import($info[1],$info[2]);
-
+        $email = $this->get('srcg.get_event_info')->sendEmail();       
+        $graduates = $info[1];
+        $users = $info[2];
+        if($email){
+            $eventos = $this->get('srcg.get_event_info')->eventDate();      
+            for($i=0; $i < count($users); $i++) { 
+                $em->persist($graduates[$i]);
+                $em->persist($users[$i]);
+              $em->flush();
+              $this->send($eventos,$graduates[$i],$users[$i]);
+                  }    
+        }else{
+        for($i=0; $i < count($users); $i++) { 
+            $em->persist($graduates[$i]);
+            $em->persist($users[$i]);
+          $em->flush();
+              }
+        }    
+      
+             
 return new RedirectResponse($this->generateUrl('adminGraduate', array('message' => 'success'))); 
 }
 
@@ -288,7 +309,10 @@ $session->set('error_graduate',$data[0]);
        $graduate->insert($data[1],$data[2]);
       
        $info = $this->get('srcg.get_event_info')->eventDate();
-       $this->send($info,$data[1],$data[2]);
+       $email = $this->get('srcg.get_event_info')->sendEmail();
+       if($email){
+        $this->send($info,$data[1],$data[2]);
+       }     
 
             return new RedirectResponse($this->generateUrl('adminGraduate', array('message' => 'success')));
         }

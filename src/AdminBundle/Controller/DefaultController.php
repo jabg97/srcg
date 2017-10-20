@@ -17,7 +17,7 @@ use AppBundle\Entity\Espacios;
 
 class DefaultController extends Controller
 {
-   
+
  /**
      * @Route("/", name="admin")
       * @Method({"GET"})
@@ -222,6 +222,7 @@ throw $this->createNotFoundException();
                $query = $graduate->graduatesQuery(); 
                $pagination = $paginator->paginate($query, $request->query->getInt('page', 1),5);
         return array(
+            'email' => $this->get('srcg.get_event_info')->sendEmail(),
                'careers' => $career->loadCareers(),
                'pagination' => $pagination,
          'message' => $message,

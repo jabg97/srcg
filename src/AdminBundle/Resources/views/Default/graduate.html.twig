@@ -144,7 +144,6 @@ Gestión de Graduandos
 </div>
 </div>
 
-
   <div class="col-md-6 col-lg-6">
 <div class="card z-depth-4 hoverable">
     <div class="card-header dark-header white-text z-depth-4 hoverable">
@@ -160,6 +159,15 @@ Gestión de Graduandos
     </div>
 </div>
 </div></div>
+
+<div class="row">
+<div class="col-md-12 col-lg-12">
+{% if email%}
+<br>
+<div class='error alert bg-warning waves-effect text-white z-depth-4 hoverable imenn'> <span  class="close" data-dismiss="alert" aria-label="close">&times;</span><center><strong> <i class='fa fa-1x fa-exclamation-triangle left'></i>&nbsp;&nbsp;Advertencia!</strong> El envio de email esta activado.</center></div>
+</div></div>
+{% endif %}
+
 <br><br>
 <div class="row">
 

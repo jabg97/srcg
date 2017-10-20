@@ -65,6 +65,37 @@ class Info
      */
     private $tipo;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="email", type="boolean", unique=true, nullable=false)
+     */
+    private $email;
+
+ /**
+     * Set email
+     *
+     * @param integer $email
+     *
+     * @return Info
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return integer
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
 
     /**
      * Set invitados

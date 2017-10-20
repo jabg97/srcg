@@ -16,6 +16,14 @@ public function __construct($em)
 $this->meses  = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
     }
 
+    public function sendEmail()
+    {
+      $repository = $this->em->getRepository('AppBundle:Info');
+      $info =  $repository->find(1);
+    return $info->getEmail();
+    }
+
+
     public function eventDate()
     {
 
@@ -123,12 +131,12 @@ return $repository->find($documento);
 return $info; 
     }
 
-    public function searchGraduate($nombre)
+    public function searchGraduate($buscar)
     {  
     $query = $this->em->getRepository("AppBundle:Graduandos")->createQueryBuilder('graduate')
-    ->where('graduate.nombre LIKE :nombre')
-    ->orWhere('graduate.apellido LIKE :nombre')
-    ->setParameter('nombre', '%'.$nombre.'%')
+    ->where('graduate.nombre LIKE :buscar')
+    ->orWhere('graduate.apellido LIKE :buscar')
+    ->setParameter('buscar', '%'.$buscar.'%')
     ->getQuery();
     return $query->getResult();
 }
