@@ -1,76 +1,96 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
 <head>
-<!-- If you delete this meta tag, the ground will open and swallow you. -->
-<meta name="viewport" content="width=device-width" />
+<!-- If you delete this
+meta tag, the ground will open and swallow you. -->
+<meta name="viewport" content="width=device-width">
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Informacion de la Ceremonia</title>
-	
-<link rel="stylesheet" type="text/css" href="{{ asset('css/email/style.css') }}" >
+
+<style>
+@media only screen and (max-width: 600px) {
+  a[class="btn"] {
+    display: block!important;
+    margin-bottom: 10px!important;
+    background-image: none!important;
+    margin-right: 0!important;
+  }
+
+  div[class="column"] {
+    width: auto!important;
+    float: none!important;
+  }
+
+  table.social div[class="column"] {
+    width: auto!important;
+  }
+}
+</style>
 
 </head>
  
-<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; height: 100%; width: 100%;">
 
 <!-- HEADER -->
-<table class="head-wrap" bgcolor="#ffffff">
-	<tr>
-		<td></td>
-		<td class="header container" align="">
+<table class="head-wrap" bgcolor="#ffffff" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+	<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+		<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"></td>
+		<td class="header container" align="" style="padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; display: block; max-width: 600px; margin: 0 auto; clear: both;">
 			
 			<!-- /content -->
-			<div class="content">
-				<table bgcolor="#ffffff">
-					<tr>
-						<td><img src="{{ absolute_url(asset('img/general/logo.png')) }}" /></td>
-						<td align="right"><h6 class="collapse">Informacion de la Ceremonia</h6></td>
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;">
+				<table bgcolor="#ffffff" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+					<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"><img src="{{ absolute_url(asset('img/general/logo.png')) }}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%;"></td>
+						<td align="right" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"><h6 class="collapse" style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; font-weight: 900; font-size: 14px; text-transform: uppercase; color: #444; padding: 0; margin: 0;">Informacion de la Ceremonia</h6></td>
 					</tr>
 				</table>
 			</div><!-- /content -->
 			
 		</td>
-		<td></td>
+		<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"></td>
 	</tr>
 </table><!-- /HEADER -->
 
 <!-- BODY -->
-<table class="body-wrap" bgcolor="">
-	<tr>
-		<td></td>
-		<td class="container" align="" bgcolor="#FFFFFF">
+<table class="body-wrap" bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+	<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+		<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"></td>
+		<td class="container" align="" bgcolor="#FFFFFF" style="padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; display: block; max-width: 600px; margin: 0 auto; clear: both;">
 			
 			<!-- content -->
-			<div class="content">
-				<table>
-					<tr>
-						<td>						
-							<h1>Felicidades</h1>
-							<p class="lead">{{ graduate.nombre }} {{ graduate.apellido }}</p>		
-							<p><img src="{{ absolute_url(asset('img/main/map/'~ codigo ~'.jpg'))}}" /></p>
-							<p>La ceremonia solemne de grado se realizará el día
-                                 {{ fecha_evento }} en {{ lugar }} ({{ direccion }}). La ceremonia
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;">
+				<table style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+					<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">						
+							<h1 style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 200; font-size: 44px;">Felicidades</h1>
+							<p class="lead" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; line-height: 1.6; font-size: 17px;">Hola <strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">{{ graduate.nombre }} {{ graduate.apellido }}</strong> te felicitamos por ....</p>		
+							<p style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;"><img src="{{ absolute_url(asset('img/main/map/'~ codigo ~'.jpg'))}}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%;"></p>
+							<p style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;">La ceremonia solemne de grado se realizará el día
+                                 <strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">{{ fecha_evento }}</strong> en <strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">{{ lugar }} ({{ direccion }})</strong>. La ceremonia
                                    tendrá una duración de 2 horas aproximadamente 
-                                   e iniciará a la {{ hora_evento }}.</p>
+                                   e iniciará a la <strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">{{ hora_evento }}</strong>.</p>
 						</td>
 					</tr>
 				</table>
 			</div><!-- /content -->
 			
 <!-- content -->
-			<div class="content"><table bgcolor="">
-				<tr>
-					<td>
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;"><table bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+				<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+					<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
 						
 						<!-- Callout Panel -->
-						<p class="callout">
+						<p class="callout" style="margin: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; padding: 15px; background-color: #ECF8FF; margin-bottom: 15px;">
 						El SRCG "Sistema registro candidatos de grado" es una aplicacion que te permite registrar tus invitados a la ceremonia de grado
-						</br></br>
-						<strong>Tu usuario:</strong> {{ graduate.codigo }}</br>
-						<strong>Tu contraseña:</strong> {{ password }} </br></br>
+						<br style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"><br style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">Tu usuario:</strong> {{ graduate.codigo }}<br style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">Tu contraseña:</strong> {{ password }} <br style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"><br style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
 
-						Para empezar a registrar a tus invitados <a target="_blank" href="{{ absolute_url(path('login')) }}">haz click aqui &raquo;</a>
-							
+						Para empezar a registrar a tus invitados <a target="_blank" href="{{ absolute_url(path('login')) }}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: bold; color: #2BA6CB;">haz click aqui &raquo;</a>
+						<br style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"><br style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						Recurda que la fecha límite para registrar los invitados es el día  <strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">{{fecha_limite }}</strong> a las <strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">{{ hora_limite }}</strong>.
 						</p><!-- /callout panel -->
 						
 					</td>
@@ -78,14 +98,14 @@
 			</table></div><!-- /content -->
 
 			<!-- content -->
-			<div class="content">
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;">
 				
-				<table bgcolor="">
-					<tr>
-						<td class="small" width="30%" style="vertical-align: top; padding-right:10px;"><img src="{{ absolute_url(asset('img/graduate/tutorial/tutorial1.jpg')) }}" /></td>
-						<td>
-							<h4>Cantidad de invitados.<small></small></h4>
-							<p class="">Se generan un número limitado de invitaciones ,por lo cual dicho número es la cantidad máxima de invitados por graduando. </p>
+				<table bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+					<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<td class="small" width="30%" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; vertical-align: top; padding-right: 10px;" valign="top"><img src="{{ absolute_url(asset('img/graduate/tutorial/tutorial1.jpg')) }}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%;"></td>
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+							<h4 style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 500; font-size: 23px;">Cantidad de invitados.<small style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 60%; color: #6f6f6f; line-height: 0; text-transform: none;"></small></h4>
+							<p class="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;">Se generan un número limitado de invitaciones ,por lo cual dicho número es la cantidad máxima de invitados por graduando. </p>
 						</td>
 					</tr>
 				</table>
@@ -93,12 +113,12 @@
 			</div><!-- /content -->
 			
 			<!-- content -->
-			<div class="content"><table bgcolor="">
-				<tr>
-<td class="small" width="30%" style="vertical-align: top; padding-right:10px;"><img src="{{ absolute_url(asset('img/graduate/tutorial/tutorial2.jpg')) }}" /></td>					
-						<td>
-						<h4>¿Como registrar un invitado?<small></small></h4>
-						<p class="">Debes registrar el documento de identidad, nmbres y apellidos de cada invitado,luego de ingresar los datos de todos los invitados haz click en el boton guardar. </p>
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;"><table bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+				<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+<td class="small" width="30%" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; vertical-align: top; padding-right: 10px;" valign="top"><img src="{{ absolute_url(asset('img/graduate/tutorial/tutorial2.jpg')) }}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%;"></td>					
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<h4 style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 500; font-size: 23px;">¿Como registrar o modificar un invitado?<small style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 60%; color: #6f6f6f; line-height: 0; text-transform: none;"></small></h4>
+						<p class="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;">Para registrar o editar los invitados deebes digitar el documento de identidad, nombres y apellidos de cada invitado,luego de ingresar los datos de todos los invitados haz click en el boton guardar. </p>
 					</td>
 				</tr>
 			</table></div><!-- /content -->
@@ -106,49 +126,68 @@
 			
 			
 			<!-- content -->
-			<div class="content"><table bgcolor="">
-				<tr>
-					<td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
-					<td>
-						<h4>Title Ipsum <small>This is a note.</small></h4>
-						<p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-						<a class="btn">Clickity Click &raquo;</a>
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;"><table bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+				<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+<td class="small" width="30%" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; vertical-align: top; padding-right: 10px;" valign="top"><img src="{{ absolute_url(asset('img/graduate/tutorial/tutorial3.jpg')) }}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%;"></td>					
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<h4 style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 500; font-size: 23px;">¿Como eliminar un invitado?<small style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 60%; color: #6f6f6f; line-height: 0; text-transform: none;"></small></h4>
+						<p class="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;">Para eliminar un invitado debes dejar todos loa campos en blanco y luego haz click en el boton guardar. </p>
 					</td>
 				</tr>
 			</table></div><!-- /content -->
 			
+			{% if activar %}
 			<!-- content -->
-			<div class="content"><table bgcolor="">
-				<tr>
-					<td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
-					<td>
-						<h4>Title Ipsum <small>This is a note.</small></h4>
-						<p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-						<a class="btn">Clickity Click &raquo;</a>
-				
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;"><table bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+				<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+<td class="small" width="30%" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; vertical-align: top; padding-right: 10px;" valign="top"><img src="{{ absolute_url(asset('img/graduate/tutorial/tutorial4a.jpg')) }}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%;"></td>					
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<h4 style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 500; font-size: 23px;">¿Como generar las invitaciones?<small style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 60%; color: #6f6f6f; line-height: 0; text-transform: none;"></small></h4>
+						<p class="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;">Para generar la invitaciónes haz click en el boton "Generar Invitaciónes". </p>
 					</td>
 				</tr>
 			</table></div><!-- /content -->
-			
+
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;"><table bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+				<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+<td class="small" width="30%" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; vertical-align: top; padding-right: 10px;" valign="top"><img src="{{ absolute_url(asset('img/graduate/tutorial/tutorial5.jpg')) }}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%;"></td>					
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<h4 style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 500; font-size: 23px;">¿Que se debe presentar el día de la ceremonia?<small style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 60%; color: #6f6f6f; line-height: 0; text-transform: none;"></small></h4>
+						<p class="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;"> Cada invitado deberá presentar la Invitacion o su Documento de identidad el día de la ceremonia. </p>
+					</td>
+				</tr>
+			</table></div><!-- /content -->
+
+{% else %}
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;"><table bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+				<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+<td class="small" width="30%" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; vertical-align: top; padding-right: 10px;" valign="top"><img src="{{ absolute_url(asset('img/graduate/tutorial/tutorial4b.jpg')) }}" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%;"></td>					
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<h4 style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 500; font-size: 23px;">¿Que se debe presentar el día de la ceremonia?<small style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 60%; color: #6f6f6f; line-height: 0; text-transform: none;"></small></h4>
+						<p class="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;">Cada invitado deberá presentar su Documento de identidad el día de la ceremonia. </p>
+					</td>
+				</tr>
+			</table></div><!-- /content -->
+{% endif %}
 			<!-- content -->
-			<div class="content">
-				<table bgcolor="">
-					<tr>
-						<td>
+			<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;">
+				<table bgcolor="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+					<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+						<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
 							
 							<!-- social & contact -->
-							<table bgcolor="" class="social" width="100%">
-								<tr>
-									<td>
+							<table bgcolor="#ebebeb" class="social" width="100%" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; background-color: #ebebeb; width: 100%;">
+								<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+									<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
 										
 										<!--- column 1 -->
-										<div class="column">
-											<table bgcolor="" cellpadding="" align="left">
-										<tr>
-											<td>				
+										<div class="column" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 280px; min-width: 279px; float: left;">
+											<table bgcolor="" cellpadding="" align="left" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+										<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+											<td style="margin: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px;">				
 												
-												<h5 class="">Connect with Us:</h5>
-												<p class=""><a href="#" class="soc-btn fb">Facebook</a> <a href="#" class="soc-btn tw">Twitter</a> <a href="#" class="soc-btn gp">Google+</a></p>
+												<h5 class="" style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 900; font-size: 17px;">Connect with Us:</h5>
+												<p class="" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;"><a href="#" class="soc-btn fb" style="margin: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 3px 7px; font-size: 12px; margin-bottom: 10px; text-decoration: none; color: #FFF; font-weight: bold; display: block; text-align: center; background-color: #3B5998;">Facebook</a> <a href="#" class="soc-btn tw" style="margin: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 3px 7px; font-size: 12px; margin-bottom: 10px; text-decoration: none; color: #FFF; font-weight: bold; display: block; text-align: center; background-color: #1daced;">Twitter</a> <a href="#" class="soc-btn gp" style="margin: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 3px 7px; font-size: 12px; margin-bottom: 10px; text-decoration: none; color: #FFF; font-weight: bold; display: block; text-align: center; background-color: #DB4A39;">Google+</a></p>
 						
 												
 											</td>
@@ -157,21 +196,21 @@
 										</div>
 										
 										<!--- column 2 -->
-										<div class="column">
-											<table bgcolor="" cellpadding="" align="left">
-										<tr>
-											<td>				
+										<div class="column" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 280px; min-width: 279px; float: left;">
+											<table bgcolor="" cellpadding="" align="left" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+										<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+											<td style="margin: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px;">				
 																			
-												<h5 class="">Contact Info:</h5>												
-												<p>Phone: <strong>408.341.0600</strong><br/>
-                Email: <strong><a href="emailto:hseldon@trantor.com">hseldon@trantor.com</a></strong></p>
+												<h5 class="" style="margin: 0; padding: 0; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; margin-bottom: 15px; color: #000; font-weight: 900; font-size: 17px;">Contact Info:</h5>												
+												<p style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;">Phone: <strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">408.341.0600</strong><br style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+                Email: <strong style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"><a href="emailto:hseldon@trantor.com" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB;">hseldon@trantor.com</a></strong></p>
                 
 											</td>
 										</tr>
 									</table><!-- /column 2 -->	
 										</div>
 										
-										<div class="clear"></div>
+										<div class="clear" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; display: block; clear: both;"></div>
 	
 									</td>
 								</tr>
@@ -184,25 +223,25 @@
 			
 
 		</td>
-		<td></td>
+		<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"></td>
 	</tr>
 </table><!-- /BODY -->
 
 <!-- FOOTER -->
-<table class="footer-wrap">
-	<tr>
-		<td></td>
-		<td class="container">
+<table class="footer-wrap" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%; clear: both;" width="100%">
+	<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+		<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"></td>
+		<td class="container" style="padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; display: block; max-width: 600px; margin: 0 auto; clear: both;">
 			
 				<!-- content -->
-				<div class="content">
-					<table>
-						<tr>
-							<td align="center">
-								<p>
-									<a href="#">Terms</a> |
-									<a href="#">Privacy</a> |
-									<a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>
+				<div class="content" style="font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; padding: 15px; max-width: 600px; margin: 0 auto; display: block;">
+					<table style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%;" width="100%">
+						<tr style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+							<td align="center" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
+								<p style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin-bottom: 10px; font-weight: normal; font-size: 14px; line-height: 1.6;">
+									<a href="#" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB;">Terms</a> |
+									<a href="#" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB;">Privacy</a> |
+									<a href="#" style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB;"><unsubscribe style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">Unsubscribe</unsubscribe></a>
 								</p>
 							</td>
 						</tr>
@@ -210,7 +249,7 @@
 				</div><!-- /content -->
 				
 		</td>
-		<td></td>
+		<td style="margin: 0; padding: 0; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;"></td>
 	</tr>
 </table><!-- /FOOTER -->
 

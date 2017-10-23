@@ -3,7 +3,7 @@
      
         <div class="modal-content">
         
-            <div class="modal-header dark-header">
+            <div class="modal-header info-header">
                 <p class="heading lead">Atencion Graduando</p>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -13,7 +13,7 @@
 
             <div class="modal-body ">
                 <div class="text-center">
-                   <i class="fa fa-bell fa-5x mb-1 animated rotateIn dark-icon"></i>
+                   <i class="fa fa-bell fa-5x mb-1 animated rotateIn info-icon"></i>
  
 										
 										<h5 class="h5-resposive">Antes de proceder a registrar tus invitados<br>Debes tener en cuenta lo siguiente:</h5>
@@ -28,21 +28,26 @@
   <img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial1.jpg') }}" alt="Tutorial #1"></li>
 
   <li class="list-group-item"><h5 class="h5-resposive">
-		<i class="fa fa-hand-o-right  animated rotateIn info-icon" aria-hidden="true"></i> Debes registrar el documento de identidad, nombres y apellidos de cada invitado,luego de ingresar los datos de todos los invitados haz click en el boton guardar.</h5>
+		<i class="fa fa-hand-o-right  animated rotateIn info-icon" aria-hidden="true"></i> Para registrar o editar los invitados deebes digitar el documento de identidad, nombres y apellidos de cada invitado,luego de ingresar los datos de todos los invitados haz click en el boton guardar.</h5>
   <img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial2.jpg') }}" alt="Tutorial #2"></li>
+  
+   <li class="list-group-item"><h5 class="h5-resposive">
+		<i class="fa fa-hand-o-right  animated rotateIn info-icon" aria-hidden="true"></i> Para eliminar un invitado debes dejar todos loa campos en blanco y luego haz click en el boton guardar.</h5>
+  <img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial3.jpg') }}" alt="Tutorial #3"></li>
+
 {% if activar %}
 
   <li class="list-group-item"><h5 class="h5-resposive">
-		<i class="fa fa-hand-o-right animated rotateIn info-icon" aria-hidden="true"></i> Para Generar la invitaciónes haz click en el boton "Generar Invitaciónes".</h5>
-<img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial3.jpg') }}" alt="Tutorial #3"></li>
+		<i class="fa fa-hand-o-right animated rotateIn info-icon" aria-hidden="true"></i> Para generar la invitaciónes haz click en el boton "Generar Invitaciónes".</h5>
+<img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial4a.jpg') }}" alt="Tutorial #4"></li>
 
 <li class="list-group-item"><h5 class="h5-resposive">
 <i class="fa fa-hand-o-right animated rotateIn info-icon" aria-hidden="true"></i> Cada invitado deberá presentar la Invitacion o su Documento de identidad el día de la ceremonia.</h5>
-<img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial4.jpg') }}" alt="Tutorial #4"></li>
+<img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial5.jpg') }}" alt="Tutorial #5"></li>
 {% else %}
 <li class="list-group-item"><h5 class="h5-resposive">
 <i class="fa fa-hand-o-right animated rotateIn info-icon" aria-hidden="true"></i> Cada invitado deberá presentar su Documento de identidad el día de la ceremonia.</h5>
-<img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial5.jpg') }}" alt="Tutorial #5"></li>
+<img class="img-fluid lostimg" src="{{ asset('img/graduate/tutorial/tutorial4b.jpg') }}" alt="Tutorial #4"></li>
 {% endif %}
 </center>
 </ul>

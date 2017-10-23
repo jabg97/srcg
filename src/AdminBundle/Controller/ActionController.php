@@ -19,11 +19,11 @@ use Symfony\Component\HttpFoundation\Response;
 class ActionController extends Controller
 {
    
-    public function send($data,$graduate,$user)
+    public function send($data,$graduate,$user,$limit,$activar)
     {
         $message = (new \Swift_Message('Contraseña'))
         ->setFrom('horariotps39@gmail.com')
-        ->setTo('horariotps39@gmail.com')
+        ->setTo('jaiverbalanta@gmail.com')
         ->setBody(
             $this->renderView(
                 'AdminBundle:Email:info.html.twig',
@@ -35,7 +35,10 @@ class ActionController extends Controller
                     'fecha_evento' => $data[3],
                     'hora_evento' => $data[4],
                     'direccion' => $data[5],
-                    'password' => $user->getPlainPassword())
+                    'password' => $user->getPlainPassword(),
+                    'fecha_limite' => $limit[0],
+                    'hora_limite' => $limit[1],
+                    'activar' => $activar)
             ),
             'text/html'
         )
@@ -66,6 +69,8 @@ class ActionController extends Controller
             return new Response("Ingrese un codigo (emailTest/2010****)");  
         }
         $data= $this->get('srcg.get_event_info')->eventDate();
+        $activar = $this->get('srcg.get_event_info')->invitation();
+        $limit= $this->get('srcg.get_event_info')->limitDate();
         $graduate = $this->get('doctrine')->getManager()
         ->getRepository('AppBundle:Graduandos')->find($code);
         $user = $this->get('doctrine')->getManager()
@@ -75,7 +80,7 @@ class ActionController extends Controller
             return new Response("No existe un graduando con codigo ".$code); 
         }
 
-        $this->send($data,$graduate,$user);
+        $this->send($data,$graduate,$user,$limit,$activar);
        return $this->render(
             'AdminBundle:Email:info.html.twig',
             array(
@@ -86,7 +91,10 @@ class ActionController extends Controller
             'fecha_evento' => $data[3],
             'hora_evento' => $data[4],
             'direccion' => $data[5],
-            'password' => $user->getPassword())
+            'password' => $user->getPassword(),
+            'fecha_limite' => $limit[0],
+            'hora_limite' => $limit[1],
+            'activar' => $activar)
        );
       
     }
@@ -252,12 +260,14 @@ $encoder = $this->get('security.password_encoder');
         $graduates = $info[1];
         $users = $info[2];
         if($email){
-            $eventos = $this->get('srcg.get_event_info')->eventDate();      
+            $event = $this->get('srcg.get_event_info')->eventDate();
+            $activar = $this->get('srcg.get_event_info')->invitation();
+            $limit= $this->get('srcg.get_event_info')->limitDate();      
             for($i=0; $i < count($users); $i++) { 
                 $em->persist($graduates[$i]);
                 $em->persist($users[$i]);
               $em->flush();
-              $this->send($eventos,$graduates[$i],$users[$i]);
+              $this->send($event,$graduates[$i],$users[$i],$limit,$activar);
                   }    
         }else{
         for($i=0; $i < count($users); $i++) { 
@@ -308,10 +318,13 @@ $session->set('error_graduate',$data[0]);
         $data[2]->setPassword($encoder->encodePassword($this->getUser(), $password));
        $graduate->insert($data[1],$data[2]);
       
-       $info = $this->get('srcg.get_event_info')->eventDate();
+      
        $email = $this->get('srcg.get_event_info')->sendEmail();
        if($email){
-        $this->send($info,$data[1],$data[2]);
+        $info = $this->get('srcg.get_event_info')->eventDate();
+        $activar = $this->get('srcg.get_event_info')->invitation();
+        $limit= $this->get('srcg.get_event_info')->limitDate();
+        $this->send($info,$data[1],$data[2],$limit,$activar);
        }     
 
             return new RedirectResponse($this->generateUrl('adminGraduate', array('message' => 'success')));
